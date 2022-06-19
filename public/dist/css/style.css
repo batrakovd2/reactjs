@@ -1,0 +1,131 @@
+.feed-container{
+    width: 70%;
+    padding-right: 7.5px;
+    padding-left: 7.5px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 900px;
+}
+
+@media (min-width: 300px) {
+    .feed-container, .container-sm {
+        width: 90%;
+    }
+}
+
+@media (min-width: 768px) {
+    .feed-container, .container-sm, .container-md {
+        width: 90%;
+    }
+}
+
+@media (min-width: 992px) {
+    .feed-container, .container-sm, .container-md, .container-lg {
+        width: 90%;
+    }
+}
+
+.comment__body {
+    transition: 200ms ease-out;
+    padding: 7px 0;
+}
+
+.comment__children {
+    transition: border-left-color 200ms ease-out;
+    border-left: solid 1px #e9ecef;
+    padding-left: 18px;
+    margin-left: 5px;
+    position: relative;
+    padding-top: 15px;
+}
+
+.comment-toggle-children {
+    font-size: 13px;
+    line-height: 0;
+    z-index: 20;
+    cursor: pointer;
+    color: #e9ecef;
+    position: absolute;
+    padding: 6px 0 8px;
+}
+
+.comment__controls {
+    font-size: 13px;
+    color: #495057;
+    line-height: 20px;
+    min-height: 20px;
+    display: flex;
+    -webkit-user-select: none;
+    user-select: none;
+    margin: 4px 0;
+}
+
+.comment__controls-inner {
+    display: flex;
+}
+
+.comment__control {
+    vertical-align: inherit;
+    margin-right: 15px;
+    text-transform: none;
+    text-align: inherit;
+    font-weight: 400;
+}
+
+.comment__control[data-type=create]:after {
+    content: "ответить";
+}
+
+.post-image{
+    margin-bottom: 15px;
+}
+
+.create-post-area{
+    border: none;
+    min-height: 82px;
+    padding: 5px 15px;
+    border: 1px solid #e9ecef;
+}
+
+.create-post-area:focus-visible{
+    border: none;
+    outline: 1px solid #e9ecef;
+}
+
+/* Устанавливаем свой шрифт для выпадающего списка*/
+#kladr_autocomplete a,
+#kladr_autocomplete strong{
+    font-family: MuseoSansCyrl, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+#kladr_autocomplete small {
+    font-family: MuseoSansCyrl, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+/* Добавляем скругления и тень у выпадающего списка*/
+#kladr_autocomplete ul {
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #ded7f9;
+    overflow: hidden;
+    background: #fff;
+    -webkit-box-shadow: 0 2px 10px 0 rgba(86, 62, 142, 0.1);
+    box-shadow: 0 2px 10px 0 rgba(86, 62, 142, 0.1);
+    z-index: 1;
+}
+
+/* Прописываем стили для тултипа с сообщением об ошибке*/
+.tooltip {
+    position: absolute;
+    top: 16px;
+    left: 360px;
+    color: #b94a48;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid #eed3d7;
+    background-color: #f2dede;
+    opacity: 0.8;
+    font-size: 14px;
+    z-index: 100000;
+}
