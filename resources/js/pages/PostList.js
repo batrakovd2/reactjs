@@ -1,8 +1,11 @@
 import React from "react";
+import AddPostBlock from "../components/AddPostBlock";
 
 const PostList = () => {
     return(
-        <h1>Посты1</h1>
+        <div className="feed-container">
+            <AddPostBlock/>
+        </div>
     );
 }
 
