@@ -5339,9 +5339,15 @@ var AddPostBlock = function AddPostBlock() {
         className: "col-md-12",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "card card-add-post",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
             className: "card-header",
-            children: "\u0427\u0442\u043E \u0442\u0435\u0431\u044F Jaebalo?"
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              className: "img-circle",
+              src: "https://picsum.photos/50",
+              alt: ""
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              children: "\u042E\u0437\u0435\u0440\u043E\u0432 \u042E\u0437\u0435\u0440"
+            })]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             className: "card-body",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -5359,7 +5365,7 @@ var AddPostBlock = function AddPostBlock() {
               className: "btn btn-primary",
               children: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-              className: "col-3 float-right",
+              className: "col-3",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 id: "type_code",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -10670,7 +10676,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".uxg9ox5PnJeUzSOe9a45Qg\\=\\= {\n    width: 100%;\n    padding: 5px 7px;\n    margin: 5px 0;\n    border: 1px solid #dee2e6;\n    border-radius: 3px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".uxg9ox5PnJeUzSOe9a45Qg\\=\\= {\r\n    width: 100%;\r\n    padding: 5px 7px;\r\n    margin: 5px 0;\r\n    border: 1px solid #dee2e6;\r\n    border-radius: 3px;\r\n}\r\n", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MyInput": "uxg9ox5PnJeUzSOe9a45Qg=="
