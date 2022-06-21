@@ -1,4 +1,6 @@
 import React from 'react';
+import MyInput from "./UI/input/MyInput";
+import MyButton from "./UI/button/MyButton";
 
 const AddPostBlock = () => {
     return (
@@ -8,9 +10,9 @@ const AddPostBlock = () => {
                     <div className="card card-add-post">
                         <div className="card-header">
                             <img className="img-circle" src="https://picsum.photos/50" alt=""/>
-                            <span>Юзеров Юзер</span>
-
+                            <span className="user-name">Юзеров Юзер</span>
                         </div>
+
                         <div className="card-body">
                             <div className="create-post-area" contentEditable="true" data-placeholder="Введите текст"
                                  role="textbox" aria-multiline="true" data-medium-editor-editor-index="2"
@@ -18,14 +20,8 @@ const AddPostBlock = () => {
                             </div>
                         </div>
                         <div className="card-footer">
-                            <div className="btn btn-primary">Отправить</div>
-                            <div className="col-3">
-                                <div id="type_code">
-                                    <div className="input">
-                                        <input className="form-control" name="city" type="text" placeholder="Город"  autoComplete="off" data-kladr-type="city" />
-                                    </div>
-                                </div>
-                            </div>
+                            <MyButton>Отправить</MyButton>
+                            <MyInput  placeholder="Город"   />
                         </div>
                     </div>
                 </div>

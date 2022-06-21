@@ -15,7 +15,7 @@
     padding-left: 7.5px;
     margin-right: auto;
     margin-left: auto;
-    max-width: 900px;
+    max-width: 640px;
 }
 
 .navbar{
@@ -27,6 +27,20 @@
 .navbar .logo img{
     border-radius: 50%;
     margin: 5px 15px;
+}
+
+.card-header{
+    padding: 1rem 1rem 0;
+    background: none;
+    border-bottom: none;
+}
+
+.card-footer{
+    background: none;
+    border-top: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .card-add-post{
@@ -45,6 +59,35 @@
     outline: 1px solid #e9ecef;
 }
 
+.img-circle{
+    border-radius: 50%;
+}
+
+.user-name{
+    margin: 0px 15px;
+}
+
+.card-post .user-block{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-post .card-header .card-tools {
+    float: right;
+    margin-right: -0.625rem;
+    margin-left: 10px;
+}
+
+.card-post .post-right-tools{
+    display: flex;
+    justify-content: space-between;
+}
+
+.img-fluid {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
 
 @media (min-width: 300px) {
     .feed-container, .container-sm {
