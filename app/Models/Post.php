@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    protected $fillable = ["user_id", "attachment", "content", "like"];
+
+    public function getPostList($limit = 3) {
+        $list = Post::orderBy('name')
+            ->take($limit)
+            ->get();
+        return $list;
+    }
+
 }
