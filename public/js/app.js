@@ -10815,7 +10815,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".rvHdIpjh1WpPuIdfUMOWRg\\=\\={\n    max-width: 200px;\n    border: 1px solid #dee2e6;\n    color: #6c757d;\n    padding: 5px 15px;\n    border-radius: 3px;\n    background: #fff;\n}\n\n.rvHdIpjh1WpPuIdfUMOWRg\\=\\=:hover{\n    background: #dee2e6;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".rvHdIpjh1WpPuIdfUMOWRg\\=\\={\r\n    max-width: 200px;\r\n    border: 1px solid #dee2e6;\r\n    color: #6c757d;\r\n    padding: 5px 15px;\r\n    border-radius: 3px;\r\n    background: #fff;\r\n}\r\n\r\n.rvHdIpjh1WpPuIdfUMOWRg\\=\\=:hover{\r\n    background: #dee2e6;\r\n}\r\n\r\n", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MyButton": "rvHdIpjh1WpPuIdfUMOWRg=="
@@ -10842,7 +10842,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".uxg9ox5PnJeUzSOe9a45Qg\\=\\= {\n    width: 100%;\n    padding: 5px 7px;\n    margin: 5px 0;\n    border: 1px solid #dee2e6;\n    border-radius: 3px;\n    max-width: 200px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".uxg9ox5PnJeUzSOe9a45Qg\\=\\= {\r\n    width: 100%;\r\n    padding: 5px 7px;\r\n    margin: 5px 0;\r\n    border: 1px solid #dee2e6;\r\n    border-radius: 3px;\r\n    max-width: 200px;\r\n}\r\n", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {
 	"MyInput": "uxg9ox5PnJeUzSOe9a45Qg=="
