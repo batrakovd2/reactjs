@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function getPostList($limit) {
+    public function getPostList(Request $request) {
+        $limit = $request->input('limit');
         return Post::getPostList($limit);
     }
     /**
