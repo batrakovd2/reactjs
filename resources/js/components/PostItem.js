@@ -14,9 +14,7 @@ const PostItem = () => {
                             <div className="post-right-tools">
                                 <span className="description">15:00 22.06.2022</span>
                                 <div className="card-tools">
-                                    <button type="button" className="btn btn-tool" title="Mark as read">
-                                        <i className="far fa-circle"></i>
-                                    </button>
+                                    <span className="material-symbols-outlined"> more_vert </span>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +27,28 @@ const PostItem = () => {
                             the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
                         </p>
                     </div>
-                    <div className="card-footer"></div>
+                    <div className="card-footer">
+                        <div className="post-control">
+                            <div className="post-control-left-wrapper">
+                                <div className="post-like-control post-control-item">
+                                    <span className="material-symbols-outlined">
+                                        favorite
+                                    </span>
+                                </div>
+                                <div className="post-share-control post-control-item">
+                                    <span className="material-symbols-outlined">
+                                    share
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="float-right post-comment-control">
+                                <span className="material-symbols-outlined">
+                                chat
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

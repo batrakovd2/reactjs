@@ -67,6 +67,10 @@
     margin: 0px 15px;
 }
 
+.card-post{
+    margin-bottom: 15px;
+}
+
 .card-post .user-block{
     display: flex;
     justify-content: space-between;
@@ -76,6 +80,7 @@
     float: right;
     margin-right: -0.625rem;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .card-post .post-right-tools{
@@ -87,6 +92,21 @@
     width: 100%;
     height: auto;
     margin-bottom: 10px;
+}
+
+.post-control{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.post-control .post-control-left-wrapper{
+    display: flex;
+}
+
+.post-control .post-control-item{
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 @media (min-width: 300px) {
