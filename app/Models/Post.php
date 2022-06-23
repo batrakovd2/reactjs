@@ -13,7 +13,7 @@ class Post extends Model
 
     public function getPostList($limit = 3) {
         $list = Post::orderBy('created_at')
-            ->take($limit)
+            ->limit($limit)
             ->get();
         return $list;
     }

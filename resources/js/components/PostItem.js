@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {getPagesCount} from "../utils/pages";
 
 const PostItem = (props) => {
-    console.log(props);
+    let ddate = new Date(props.post.created_at);
+    ddate = ddate.toLocaleDateString('ru-RU');
+
     return (
         <div className="row">
             <div className="col-12">
@@ -9,11 +12,11 @@ const PostItem = (props) => {
                     <div className="card-header">
                         <div className="user-block">
                             <div className="img-wrap">
-                                <img className="img-circle" src="https://picsum.photos/50" alt="User Image" />
+                                <img className="img-circle" src="" alt="User Image" />
                                 <span className="user-name"><a href="#">Jonathan Burke Jr.</a></span>
                             </div>
                             <div className="post-right-tools">
-                                <span className="description">15:00 22.06.2022</span>
+                                <span className="description">{ddate}</span>
                                 <div className="card-tools">
                                     <span className="material-symbols-outlined"> more_vert </span>
                                 </div>
@@ -21,11 +24,9 @@ const PostItem = (props) => {
                         </div>
                     </div>
                     <div className="card-body">
-                        <img className="img-fluid pad" src="https://picsum.photos/50" alt="Photo" />
+                        <img className="img-fluid pad" src={props.post.attachment} alt="Photo" />
                         <p>
-                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at
-
-                            the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+                            {props.post.content}
                         </p>
                     </div>
                     <div className="card-footer">
