@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -35,11 +36,22 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function store(Request $request)
     {
-        //
+        $result = [];
+        try{
+            $item = Post::create($request->all());
+            if(!empty($item)) {
+                $result = ['status' => 200, 'descr' => 'Пост добавлен'];
+            }
+        } catch (\Exception $e) {
+            Log::error($e);
+        }
+
+        return $result;
+
     }
 
     /**
