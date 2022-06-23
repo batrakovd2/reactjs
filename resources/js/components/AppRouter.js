@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import PostList from "../pages/PostList";
+import Posts from "../pages/Posts";
 import About from "../pages/About";
 import Navbar from "./UI/navbar/Navbar";
 import Error from "../pages/Error";
@@ -14,7 +14,7 @@ const AppRouter = () => {
                     <About />
                 </Route>
                 <Route exact path="/">
-                    <PostList />
+                    <Posts />
                 </Route>
                 <Route path="*">
                     <Error />

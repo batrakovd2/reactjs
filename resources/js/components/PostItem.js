@@ -1,6 +1,7 @@
 import React from 'react';
 
-const PostItem = () => {
+const PostItem = (props) => {
+    console.log(props);
     return (
         <div className="row">
             <div className="col-12">
