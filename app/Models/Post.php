@@ -12,9 +12,7 @@ class Post extends Model
     protected $fillable = ["user_id", "attachment", "content", "like"];
 
     public function getPostList($limit = 3) {
-        $list = Post::orderBy('created_at')
-            ->limit($limit)
-            ->get();
+        $list = Post::orderBy('id', 'asc')->paginate($limit);
         return $list;
     }
 

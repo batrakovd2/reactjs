@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default class PostService {
-    static async getPosts(limit = 10, page = 1) {
-        const response = await axios.post('/api/post/get/list', {
+    static async getPosts(limit = 3, page = 1) {
+        const response = await axios.post('/api/post/get/list?page=' + page, {
             params: {
                 limit: limit
             }

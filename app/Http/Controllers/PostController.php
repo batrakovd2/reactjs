@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Log;
 class PostController extends Controller
 {
     public function getPostList(Request $request) {
-        $limit = $request->input('limit');
-        return Post::getPostList($limit);
+        $limit = $request->input('params');
+        return Post::getPostList($limit["limit"]);
     }
     /**
      * Display a listing of the resource.
