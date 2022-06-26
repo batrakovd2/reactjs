@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
         for($i = 1; $i <= 20; $i++) {
             $posts = [
                 "last_name" => $this->faker->lastName(),
-                "name" => $this->faker->userName(),
+                "name" => $this->faker->firstName(),
                 "password" => Str::random(30),
                 "email" => Str::random(30).'@mail.ru',
                 "logo" => "/uploads/users/img". $i .".jpg"

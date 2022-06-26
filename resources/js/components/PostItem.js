@@ -1,10 +1,17 @@
 import React, {useState} from 'react';
 import {getPagesCount} from "../utils/pages";
+import PostService from "../API/PostService";
 
 const PostItem = (props) => {
+    const [like, setLike] = useState(props.post.like);
     let ddate = new Date(props.post.created_at);
     ddate = ddate.toLocaleDateString('ru-RU');
     const user = props.post.user;
+
+    const addLike = async (postId) => {
+        const response = await PostService.addLikePost(postId);
+        setLike(response.data);
+    }
 
     return (
         <div className="row">
@@ -34,9 +41,10 @@ const PostItem = (props) => {
                         <div className="post-control">
                             <div className="post-control-left-wrapper">
                                 <div className="post-like-control post-control-item">
-                                    <span className="material-symbols-outlined">
+                                    <span className={!like ? 'not-like material-symbols-outlined like-icon' : 'material-symbols-outlined like-icon'} onClick={() => addLike(props.post.id)}>
                                         favorite
                                     </span>
+                                    <div>{like}</div>
                                 </div>
                                 <div className="post-share-control post-control-item">
                                     <span className="material-symbols-outlined">

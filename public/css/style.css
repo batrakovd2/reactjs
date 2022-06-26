@@ -107,12 +107,26 @@
 .post-control .post-control-item{
     margin-right: 10px;
     cursor: pointer;
+    display:flex;
+}
+
+.post-control-item div{
+    padding-left: 5px;
+    padding-right: 15px;
 }
 
 .user-logo{
     width: 55px;
     border: 1px solid #6c757d;
     padding: 3px;
+}
+
+.like-icon{
+    color: red;
+}
+
+.like-icon.not-like{
+    color: #212529;
 }
 
 @media (min-width: 300px) {

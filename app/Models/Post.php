@@ -16,7 +16,7 @@ class Post extends Model
     }
 
     public function getPostList($limit = 3) {
-        $list = Post::orderBy('id', 'asc')->paginate($limit);
+        $list = Post::orderBy('id', 'desc')->paginate($limit);
         foreach ($list as $key=>$post) {
             $list[$key]->user = $post->user;
         }

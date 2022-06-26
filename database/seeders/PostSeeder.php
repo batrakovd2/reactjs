@@ -48,7 +48,7 @@ class PostSeeder extends Seeder
             $posts = [
                 "user_id" => rand(1, 10),
                 "content" => $this->faker->realText(),
-                "attachment" => "/uploads/post/img". $i .".jpg",
+                "attachment" => "/uploads/post/img". rand(1, 10) .".jpg",
                 "like" => rand(1, 100)
             ];
             DB::table('posts')->insert($posts);

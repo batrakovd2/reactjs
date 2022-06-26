@@ -13,6 +13,16 @@ class PostController extends Controller
         $posts = Post::getPostList($limit["limit"]);
         return $posts;
     }
+
+    public function addPostLike(Request $request) {
+        $id = $request->input('params');
+        $post = Post::find($id['id']);
+        $result = $post->like;
+        $post->like++;
+        $response = $post->update();
+        if($response) $result = $post->like;
+        return $result;
+    }
     /**
      * Display a listing of the resource.
      *

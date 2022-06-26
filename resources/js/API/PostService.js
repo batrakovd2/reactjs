@@ -10,6 +10,15 @@ export default class PostService {
         return response;
     }
 
+    static async addLikePost(id) {
+        const response = await axios.post('/api/post/add/like', {
+            params: {
+                id: id
+            }
+        });
+        return response;
+    }
+
     static async getPostById(id) {
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts/' + id);
         return response;
@@ -19,4 +28,6 @@ export default class PostService {
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts/' + id + '/comments');
         return response;
     }
+
+
 }
