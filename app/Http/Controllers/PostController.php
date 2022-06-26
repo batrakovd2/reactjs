@@ -10,7 +10,8 @@ class PostController extends Controller
 {
     public function getPostList(Request $request) {
         $limit = $request->input('params');
-        return Post::getPostList($limit["limit"]);
+        $posts = Post::getPostList($limit["limit"]);
+        return $posts;
     }
     /**
      * Display a listing of the resource.

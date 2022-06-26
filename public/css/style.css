@@ -109,6 +109,12 @@
     cursor: pointer;
 }
 
+.user-logo{
+    width: 55px;
+    border: 1px solid #6c757d;
+    padding: 3px;
+}
+
 @media (min-width: 300px) {
     .feed-container, .container-sm {
         width: 90%;

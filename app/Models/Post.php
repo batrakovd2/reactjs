@@ -11,8 +11,15 @@ class Post extends Model
 
     protected $fillable = ["user_id", "attachment", "content", "like"];
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public function getPostList($limit = 3) {
         $list = Post::orderBy('id', 'asc')->paginate($limit);
+        foreach ($list as $key=>$post) {
+            $list[$key]->user = $post->user;
+        }
         return $list;
     }
 

@@ -4,6 +4,7 @@ import {getPagesCount} from "../utils/pages";
 const PostItem = (props) => {
     let ddate = new Date(props.post.created_at);
     ddate = ddate.toLocaleDateString('ru-RU');
+    const user = props.post.user;
 
     return (
         <div className="row">
@@ -12,8 +13,8 @@ const PostItem = (props) => {
                     <div className="card-header">
                         <div className="user-block">
                             <div className="img-wrap">
-                                <img className="img-circle" src="" alt="User Image" />
-                                <span className="user-name"><a href="#">Jonathan Burke Jr.</a></span>
+                                <img className="img-circle user-logo" src={user.logo} alt="User Image" />
+                                <span className="user-name">{user.last_name + ' ' + user.name}</span>
                             </div>
                             <div className="post-right-tools">
                                 <span className="description">{ddate}</span>

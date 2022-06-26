@@ -5596,6 +5596,7 @@ __webpack_require__.r(__webpack_exports__);
 var PostItem = function PostItem(props) {
   var ddate = new Date(props.post.created_at);
   ddate = ddate.toLocaleDateString('ru-RU');
+  var user = props.post.user;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "row",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -5609,15 +5610,12 @@ var PostItem = function PostItem(props) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
               className: "img-wrap",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-                className: "img-circle",
-                src: "",
+                className: "img-circle user-logo",
+                src: user.logo,
                 alt: "User Image"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
                 className: "user-name",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                  href: "#",
-                  children: "Jonathan Burke Jr."
-                })
+                children: user.last_name + ' ' + user.name
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
               className: "post-right-tools",
@@ -5699,16 +5697,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var PostList = function PostList(_ref) {
   var posts = _ref.posts;
-
-  if (!posts.length) {
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      style: {
-        textAlign: 'center'
-      },
-      children: " \u041F\u043E\u0441\u0442\u044B \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u044B "
-    });
-  }
-
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     children: posts.map(function (post, index) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_PostItem__WEBPACK_IMPORTED_MODULE_1__["default"], {

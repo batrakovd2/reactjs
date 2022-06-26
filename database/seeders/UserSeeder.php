@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class PostSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * The current Faker instance.
@@ -26,6 +26,7 @@ class PostSeeder extends Seeder
     {
         $this->faker = $this->withFaker();
     }
+
     /**
      * Get a new Faker instance.
      *
@@ -40,20 +41,20 @@ class PostSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
-        $posts = [];
+        $users = [];
 
         for($i = 1; $i <= 20; $i++) {
             $posts = [
-                "user_id" => rand(1, 10),
-                "content" => $this->faker->realText(),
-                "attachment" => "/uploads/post/img". $i .".jpg",
-                "like" => rand(1, 100)
+                "last_name" => $this->faker->lastName(),
+                "name" => $this->faker->userName(),
+                "password" => Str::random(30),
+                "email" => Str::random(30).'@mail.ru',
+                "logo" => "/uploads/users/img". $i .".jpg"
             ];
-            DB::table('posts')->insert($posts);
+            DB::table('users')->insert($posts);
         }
-
-
     }
 }
