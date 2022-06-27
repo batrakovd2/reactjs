@@ -4,13 +4,16 @@ import PostService from "../API/PostService";
 
 const PostItem = (props) => {
     const [like, setLike] = useState(props.post.like);
+    const [likeYet, setLikeYet] = useState(false);
     let ddate = new Date(props.post.created_at);
     ddate = ddate.toLocaleDateString('ru-RU');
     const user = props.post.user;
-
     const addLike = async (postId) => {
-        const response = await PostService.addLikePost(postId);
-        setLike(response.data);
+        if(!likeYet) {
+            const response = await PostService.addLikePost(postId);
+            setLike(response.data);
+            setLikeYet(true);
+        }
     }
 
     return (
