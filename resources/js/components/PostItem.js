@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {getPagesCount} from "../utils/pages";
 import PostService from "../API/PostService";
+import CommentList from "./CommentList";
 
 const PostItem = (props) => {
     const [like, setLike] = useState(props.post.like);
@@ -63,6 +64,7 @@ const PostItem = (props) => {
                             </div>
                         </div>
                     </div>
+                    <CommentList posts={props.posts}/>
                 </div>
             </div>
 

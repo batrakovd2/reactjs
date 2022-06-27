@@ -63,6 +63,8 @@
     border-radius: 50%;
 }
 
+
+
 .user-name{
     margin: 0px 15px;
 }
@@ -127,6 +129,66 @@
 
 .like-icon.not-like{
     color: #212529;
+}
+
+
+.comment__body {
+    transition: 200ms ease-out;
+    padding: 7px 0;
+}
+
+.comment__children {
+    transition: border-left-color 200ms ease-out;
+    border-left: solid 1px #e9ecef;
+    padding-left: 18px;
+    margin-left: 5px;
+    position: relative;
+    padding-top: 15px;
+}
+
+.comment-toggle-children {
+    font-size: 13px;
+    line-height: 0;
+    z-index: 20;
+    cursor: pointer;
+    color: #e9ecef;
+    position: absolute;
+    padding: 6px 0 8px;
+}
+
+.comment__controls {
+    font-size: 13px;
+    color: #495057;
+    line-height: 20px;
+    min-height: 20px;
+    display: flex;
+    -webkit-user-select: none;
+    user-select: none;
+    margin: 4px 0;
+}
+
+.comment__controls-inner {
+    display: flex;
+}
+
+.comment__control {
+    vertical-align: inherit;
+    margin-right: 15px;
+    text-transform: none;
+    text-align: inherit;
+    font-weight: 400;
+}
+
+.comment__control[data-type=create]:after {
+    content: "ответить";
+}
+
+.comment-body .img-circle{
+    width: 50px;
+}
+
+.card-footer.card-comments{
+    display: block;
 }
 
 @media (min-width: 300px) {
