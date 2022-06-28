@@ -49,7 +49,8 @@ class PostSeeder extends Seeder
                 "user_id" => rand(1, 10),
                 "content" => $this->faker->realText(),
                 "attachment" => "/uploads/post/img". rand(1, 10) .".jpg",
-                "like" => rand(1, 100)
+                "like" => rand(1, 100),
+                "created_at" => $this->faker->date()
             ];
             DB::table('posts')->insert($posts);
         }

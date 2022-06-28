@@ -2,13 +2,12 @@ import React, {useState} from 'react';
 import {getPagesCount} from "../utils/pages";
 import PostService from "../API/PostService";
 import CommentList from "./CommentList";
+import UserBlock from "./UserBlock";
 
 const PostItem = (props) => {
     const [like, setLike] = useState(props.post.like);
     const [likeYet, setLikeYet] = useState(false);
-    let ddate = new Date(props.post.created_at);
-    ddate = ddate.toLocaleDateString('ru-RU');
-    const user = props.post.user;
+
     const addLike = async (postId) => {
         if(!likeYet) {
             const response = await PostService.addLikePost(postId);
@@ -22,18 +21,7 @@ const PostItem = (props) => {
             <div className="col-12">
                 <div className="card card-post card-widget">
                     <div className="card-header">
-                        <div className="user-block">
-                            <div className="img-wrap">
-                                <img className="img-circle user-logo" src={user.logo} alt="User Image" />
-                                <span className="user-name">{user.last_name + ' ' + user.name}</span>
-                            </div>
-                            <div className="post-right-tools">
-                                <span className="description">{ddate}</span>
-                                <div className="card-tools">
-                                    <span className="material-symbols-outlined"> more_vert </span>
-                                </div>
-                            </div>
-                        </div>
+                        <UserBlock post={props.post} user={props.post.user} />
                     </div>
                     <div className="card-body">
                         <img className="img-fluid pad" src={props.post.attachment} alt="Photo" />
@@ -64,7 +52,11 @@ const PostItem = (props) => {
                             </div>
                         </div>
                     </div>
-                    <CommentList posts={props.posts}/>
+                    { props.post.comments.length
+                        ? <CommentList posts={props.post} comments={props.post.comments} />
+                        : ''
+                    }
+
                 </div>
             </div>
 

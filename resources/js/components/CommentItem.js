@@ -1,23 +1,19 @@
 import React from 'react';
+import UserBlock from "./UserBlock";
 
 const CommentItem = (props) => {
+    console.log(props)
     return (
-        <div>
+        <div className="card-comment">
             <div className="comment-body">
-                <img className="img-circle img-sm user-logo" src="https://picsum.photos/128" alt="User Image" />
+
+                <UserBlock post={props.comment} user={props.comment.user} />
                 <div className="comment-text">
-                        <span className="username">
-                            Maria Gonzales
-                            <span className="text-muted float-right">8:03 PM Today</span>
-                        </span>
-                    It is a long established fact that a reader will be distracted
-                    by the readable content of a page when looking at its layout.
+                    {props.comment.content}
                 </div>
                 <div className="comment__controls">
                     <div className="comment__controls-inner">
-                        <div className="button_link comment__control" >
-
-                        </div>
+                        <div className="button_link comment__control" data-type="create"></div>
                     </div>
                 </div>
             </div>
