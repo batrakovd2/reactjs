@@ -19,5 +19,15 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getChildComments($id) {
+        $comments = !empty($id)
+            ? Comment::where('parent_id', $id)->get()
+            : [];
+        foreach ($comments as $key => $comment) {
+            $comments[$key]->user = $comment->user;
+        }
+        return $comments;
+    }
+
 
 }

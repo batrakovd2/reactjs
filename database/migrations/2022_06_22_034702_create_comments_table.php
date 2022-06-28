@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->integer('post_id');
             $table->integer('user_id');
             $table->integer('parent_id');
+            $table->integer('child_count');
             $table->string('content')->nullable();
             $table->string('attachment')->nullable();
             $table->integer('like')->nullable();

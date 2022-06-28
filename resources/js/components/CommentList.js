@@ -1,18 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PostItem from "./PostItem";
 import CommentItem from "./CommentItem";
 
 const CommentList = (props) => {
-    // console.log(props)
-    const comments = props.comments;
+    // console.log(props.comments)
+    // const comments = props.comments;
+    const [comments, setCommentStack] = useState(props.comments);
+    // console.log(comments);
+    const addChildComments = (newComments) => {
+
+        console.log(newComments)
+        setCommentStack([...comments, newComments]);
+        console.log(comments);
+    }
+
     return (
         <div className="card-footer card-comments">
             {comments.map((comment, index) =>
-                <CommentItem number={index + 1} comment={comment} key={comment.id} />
+                <CommentItem number={index + 1} comment={comment} key={comment.id} showChild={addChildComments} />
             )}
             {props.posts.commentCount > 3
-                ? <div>Показать еще</div>
-                : ''
+                ?? <div className="comment-show">Показать еще</div>
             }
 
             {/*<div className="card-comment">*/}

@@ -48,6 +48,7 @@ class CommentSeeder extends Seeder
                 "post_id" => rand(1, 20),
                 "user_id" => rand(1, 10),
                 "parent_id" => 0,
+                "child_count" => 0,
                 "content" => $this->faker->realText(),
                 "attachment" => "/uploads/comments/img". rand(1, 10) .".jpg",
                 "like" => rand(1, 100)

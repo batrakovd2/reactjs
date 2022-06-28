@@ -10,6 +10,15 @@ export default class PostService {
         return response;
     }
 
+    static async getChildComments(id) {
+        const response = await axios.post('/api/comment/get/child', {
+            params: {
+                id: id
+            }
+        });
+        return response;
+    }
+
     static async addLikePost(id) {
         const response = await axios.post('/api/post/add/like', {
             params: {

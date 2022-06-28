@@ -118,7 +118,7 @@
 }
 
 .user-logo{
-    width: 55px;
+    width: 45px;
     border: 1px solid #6c757d;
     padding: 3px;
 }
@@ -162,9 +162,8 @@
     line-height: 20px;
     min-height: 20px;
     display: flex;
-    -webkit-user-select: none;
     user-select: none;
-    margin: 4px 0;
+    margin: 10px 0;
 }
 
 .comment__controls-inner {
@@ -183,12 +182,22 @@
     content: "ответить";
 }
 
-.comment-body .img-circle{
-    width: 50px;
-}
+/*.comment-body .img-circle{*/
+/*    width: 50px;*/
+/*}*/
 
 .card-footer.card-comments{
     display: block;
+}
+
+.comment-like-control{
+    display: flex;
+    margin-right: 25px;
+}
+
+.comment-like-control .like-icon{
+    font-size: 18px;
+    margin-right: 7px;
 }
 
 @media (min-width: 300px) {
