@@ -3,13 +3,18 @@ import PostItem from "./PostItem";
 import CommentItem from "./CommentItem";
 
 const CommentList = (props) => {
-    console.log(props)
+    // console.log(props)
     const comments = props.comments;
     return (
         <div className="card-footer card-comments">
             {comments.map((comment, index) =>
                 <CommentItem number={index + 1} comment={comment} key={comment.id} />
             )}
+            {props.posts.commentCount > 3
+                ? <div>Показать еще</div>
+                : ''
+            }
+
             {/*<div className="card-comment">*/}
             {/*    <div className="comment-body">*/}
             {/*        <div className="user-block">*/}
