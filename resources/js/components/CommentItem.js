@@ -14,14 +14,14 @@ const CommentItem = (props) => {
         console.log(response.data);
 
         const newComment = {
-            ...comment, child: response.data, id: Date.now()
+            ...comment, child: response.data
         }
         setComment(newComment)
         // props.comment.child = response['data'];
         // console.log(newComment);
         // setComment(props.comment)
 
-        props.showChild(newComment);
+        // props.showChild(newComment);
     }
 
     return (
