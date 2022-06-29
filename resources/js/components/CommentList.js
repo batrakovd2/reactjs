@@ -3,15 +3,9 @@ import PostItem from "./PostItem";
 import CommentItem from "./CommentItem";
 
 const CommentList = (props) => {
-    // console.log(props.comments)
-    // const comments = props.comments;
-    const [comments, setCommentStack] = useState(props.comments);
-    // console.log(comments);
+    const [comments, setComment] = useState(props.comments);
     const addChildComments = (newComments) => {
-
-        console.log(newComments)
-        setCommentStack([...comments, newComments]);
-        console.log(comments);
+        setComment([...comments]);
     }
 
     return (

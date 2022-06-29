@@ -7,14 +7,21 @@ const CommentItem = (props) => {
     const like = props.comment.like;
     props.comment.child = [];
     const [comment, setComment] = useState(props.comment);
-    console.log(comment);
+    // console.log(comment);
     const showChildComments = async (comId) => {
         const response = await PostService.getChildComments(comId);
-        props.comment.child = response['data'];
-        console.log(props.comment);
-        setComment(props.comment)
+        // props.comment.child = response['data'];
+        console.log(response.data);
 
-        // props.showChild(response['data']);
+        const newComment = {
+            ...comment, child: response.data, id: Date.now()
+        }
+        setComment(newComment)
+        // props.comment.child = response['data'];
+        // console.log(newComment);
+        // setComment(props.comment)
+
+        props.showChild(newComment);
     }
 
     return (
