@@ -22,3 +22,4 @@ Route::post('post/get/list', [App\Http\Controllers\PostController::class, 'getPo
 Route::post('post/create', [App\Http\Controllers\PostController::class, 'store']);
 Route::post('post/add/like', [App\Http\Controllers\PostController::class, 'addPostLike']);
 Route::post('comment/get/child', [App\Http\Controllers\CommentController::class, 'getChildComments']);
+Route::post('comment/add/like', [App\Http\Controllers\CommentController::class, 'addCommentLike']);

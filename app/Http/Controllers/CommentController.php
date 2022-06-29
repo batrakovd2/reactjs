@@ -11,6 +11,16 @@ class CommentController extends Controller
         $id = $request->input('params') ?? [];
         return Comment::getChildComments($id['id']);
     }
+
+    public function addCommentLike(Request $request) {
+        $id = $request->input('params');
+        $comment = Comment::find($id['id']);
+        $result = $comment->like;
+        $comment->like++;
+        $response = $comment->update();
+        if($response) $result = $comment->like;
+        return $result;
+    }
     /**
      * Display a listing of the resource.
      *

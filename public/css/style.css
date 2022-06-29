@@ -125,6 +125,7 @@
 
 .like-icon{
     color: red;
+    cursor: pointer;
 }
 
 .like-icon.not-like{
