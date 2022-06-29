@@ -7,21 +7,24 @@ const CommentItem = (props) => {
     const like = props.comment.like;
     props.comment.child = [];
     const [comment, setComment] = useState(props.comment);
-    // console.log(comment);
+    const [commentShow, setCommentShow] = useState({visible: false, title: 'Показать еще'});
+    const [visibleClass, setvisibleClass] = useState('comment__children');
+
     const showChildComments = async (comId) => {
         const response = await PostService.getChildComments(comId);
-        // props.comment.child = response['data'];
-        console.log(response.data);
-
         const newComment = {
             ...comment, child: response.data
         }
         setComment(newComment)
-        // props.comment.child = response['data'];
-        // console.log(newComment);
-        // setComment(props.comment)
 
-        // props.showChild(newComment);
+        if(!commentShow.visible) {
+            setCommentShow({visible: true, title: 'Скрыть комментарии'})
+            setvisibleClass(visibleClass + ' show')
+        } else {
+            setCommentShow({visible: false, title: 'Показать еще ' + comment.child_count})
+            setvisibleClass('comment__children')
+        }
+
     }
 
     return (
@@ -42,13 +45,13 @@ const CommentItem = (props) => {
                         <div className="button_link comment__control" data-type="create"></div>
                     </div>
                     { comment.child_count
-                        ? <div className="comment-show" onClick={() => { showChildComments(comment.id) }}>Показать еще {comment.child_count}</div>
+                        ? <div className="comment-show" onClick={() => { showChildComments(comment.id) }}>{commentShow.title}</div>
                         : ''
                     }
                 </div>
                 { comment.child.length
                 ?
-                    <div className="comment__children">
+                    <div className={visibleClass}>
                         {comment.child.map((comm, index) =>
                             <CommentItem number={index + 1} comment={comm} key={comm.id} />
                         )}

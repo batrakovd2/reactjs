@@ -138,12 +138,16 @@
 }
 
 .comment__children {
+    display: none;
     transition: border-left-color 200ms ease-out;
     border-left: solid 1px #e9ecef;
     padding-left: 18px;
     margin-left: 5px;
     position: relative;
     padding-top: 15px;
+}
+.comment__children.show{
+    display: block;
 }
 
 .comment-toggle-children {
@@ -198,6 +202,10 @@
 .comment-like-control .like-icon{
     font-size: 18px;
     margin-right: 7px;
+}
+
+.comment-show{
+    cursor: pointer;
 }
 
 @media (min-width: 300px) {
