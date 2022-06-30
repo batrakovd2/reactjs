@@ -1,18 +1,22 @@
 import React, {useState} from 'react';
 import UserBlock from "./UserBlock";
 import PostService from "../API/PostService";
+import Loader from "./UI/loader/LoaderMini";
+import LoaderMini from "./UI/loader/LoaderMini";
 
 const CommentItem = (props) => {
 
     props.comment.child = [];
     const [comment, setComment] = useState(props.comment);
-    const [commentShow, setCommentShow] = useState({visible: false, title: 'Показать еще'});
+    const [commentShow, setCommentShow] = useState({visible: false, title: 'Показать еще ' + comment.child_count});
     const [like, setLike] = useState(props.comment.like);
     const [likeYet, setLikeYet] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [visibleClass, setvisibleClass] = useState('comment__children');
 
     const showChildComments = async (comId) => {
+        setIsLoading(true);
         const response = await PostService.getChildComments(comId);
         const newComment = {
             ...comment, child: response.data
@@ -26,6 +30,7 @@ const CommentItem = (props) => {
             setCommentShow({visible: false, title: 'Показать еще ' + comment.child_count })
             setvisibleClass('comment__children')
         }
+        setIsLoading(false);
 
     }
 
@@ -58,6 +63,7 @@ const CommentItem = (props) => {
                         ? <div className="comment-show" onClick={() => { showChildComments(comment.id) }}>{commentShow.title}</div>
                         : ''
                     }
+                    { isLoading ? <LoaderMini /> : '' }
                 </div>
                 { comment.child.length
                 ?
@@ -69,17 +75,6 @@ const CommentItem = (props) => {
                     : ''
                 }
             </div>
-            {/*{ props.comment.parent_id != 0*/}
-            {/*??*/}
-            {/*    {props.comment.map((comment, index) => {*/}
-            {/*                <div className="comment__children">*/}
-            {/*                    <CommentItem number={index + 1} comment={comment} key={comment.id}*/}
-            {/*                                 showChild={addChildComments}/>*/}
-            {/*                </div>*/}
-            {/*            }*/}
-            {/*        )}*/}
-            {/*    */}
-            {/*}*/}
 
         </div>
 
