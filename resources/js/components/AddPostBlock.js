@@ -1,8 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 
-const AddPostBlock = () => {
+const AddPostBlock = ({create}) => {
+
+    const [post, setPost] = useState({
+        content: '',
+        comments: [],
+        like: 0,
+        user_id: 1,
+        user: {
+            last_name: "Stamm",
+            logo: "/uploads/users/img3.jpg",
+            name: "Emanuel"
+        }
+    });
+
+    const addNewPost = (e) => {
+        e.preventDefault();
+        const newPost = {
+            ...post, id: Date.now()
+        }
+        create(newPost);
+         // setPost({
+         //     content: '',
+         //     comments: [],
+         //     like: 0,
+         //     user_id: 1,
+         // })
+    }
+
     return (
         <div>
             <div className="row">
@@ -16,11 +43,16 @@ const AddPostBlock = () => {
                         <div className="card-body">
                             <div className="create-post-area" contentEditable="true" data-placeholder="Введите текст"
                                  role="textbox" aria-multiline="true" data-medium-editor-editor-index="2"
-                                 data-medium-focused="true">
+                                 data-medium-focused="true"
+                                 onKeyUp={e => {
+                                         setPost({...post, content: e.target.outerText} )
+                                     }
+                                 }
+                            >
                             </div>
                         </div>
                         <div className="card-footer">
-                            <MyButton>Отправить</MyButton>
+                            <MyButton onClick={addNewPost}>Отправить</MyButton>
                             <MyInput  placeholder="Город"   />
                         </div>
                     </div>

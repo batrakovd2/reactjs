@@ -30,13 +30,14 @@ const Posts = () => {
         fetchPosts();
     }, [page]);
 
-    const changePage = (page) => {
-        setPage(page)
+    const createPost = (newPost) => {
+        console.log(newPost)
+        setPosts([newPost, ...posts])
     }
 
     return(
         <div className="feed-container">
-            <AddPostBlock/>
+            <AddPostBlock create={createPost}/>
             {postError && <h1> Произошла ошибка ${postError}</h1> }
             <PostList posts={posts}/>
             { isPostLoading ? <Loader /> : '' }
