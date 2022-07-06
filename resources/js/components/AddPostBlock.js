@@ -5,7 +5,7 @@ import MyButton from "./UI/button/MyButton";
 const AddPostBlock = ({create}) => {
 
     const [post, setPost] = useState({
-        content: '',
+        content: '123',
         comments: [],
         like: 0,
         user_id: 1,
@@ -41,15 +41,7 @@ const AddPostBlock = ({create}) => {
                         </div>
 
                         <div className="card-body">
-                            <div className="create-post-area" contentEditable="true" data-placeholder="Введите текст"
-                                 role="textbox" aria-multiline="true" data-medium-editor-editor-index="2"
-                                 data-medium-focused="true"
-                                 onKeyUp={e => {
-                                         setPost({...post, content: e.target.outerText} )
-                                     }
-                                 }
-                            >
-                            </div>
+                            <textarea className="create-post-area" defaultValue="1321"></textarea>
                         </div>
                         <div className="card-footer">
                             <MyButton onClick={addNewPost}>Отправить</MyButton>
