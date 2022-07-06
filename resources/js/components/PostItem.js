@@ -24,7 +24,12 @@ const PostItem = (props) => {
                         <UserBlock post={props.post} user={props.post.user} />
                     </div>
                     <div className="card-body">
-                        <img className="img-fluid pad" src={props.post.attachment} alt="Photo" />
+                        {
+                            props.post.attachment.length
+                                ?   <img className="img-fluid pad" src={props.post.attachment} alt="Photo" />
+                                : ""
+                        }
+
                         <p>
                             {props.post.content}
                         </p>
