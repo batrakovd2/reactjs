@@ -28,6 +28,7 @@ const AddPostBlock = ({create}) => {
             comments: [],
             like: 0,
             user_id: 1,
+            attachment: "",
             user: {
                 last_name: "Stamm 234",
                 logo: "/uploads/users/img3.jpg",
@@ -47,8 +48,8 @@ const AddPostBlock = ({create}) => {
                         </div>
 
                         <div className="card-body">
-                            <textarea className="create-post-area" defaultValue={post.content} onChange={e => setPost({...post, content: e.target.value})}>
-
+                            <textarea className="create-post-area" value={post.content} onChange={e => setPost({...post, content: e.target.value})}>
+                                {post.content}
                             </textarea>
                         </div>
                         <div className="card-footer">
