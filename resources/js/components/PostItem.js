@@ -1,20 +1,15 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {getPagesCount} from "../utils/pages";
 import PostService from "../API/PostService";
 import CommentList from "./CommentList";
 import UserBlock from "./UserBlock";
+import {Context} from "../context";
 
 const PostItem = (props) => {
     const [like, setLike] = useState(props.post.like);
     const [likeYet, setLikeYet] = useState(false);
 
-    const addLike = async (postId) => {
-        if(!likeYet) {
-            const response = await PostService.addLikePost(postId);
-            setLike(response.data);
-            setLikeYet(true);
-        }
-    }
+    const {addPostLike} = useContext(Context);
 
     return (
         <div className="row">
@@ -38,7 +33,7 @@ const PostItem = (props) => {
                         <div className="post-control">
                             <div className="post-control-left-wrapper">
                                 <div className="post-like-control post-control-item">
-                                    <span className={!like ? 'not-like material-symbols-outlined like-icon' : 'material-symbols-outlined like-icon'} onClick={() => addLike(props.post.id)}>
+                                    <span className={!like ? 'not-like material-symbols-outlined like-icon' : 'material-symbols-outlined like-icon'} onClick={() => addPostLike(props.post.id, likeYet, setLikeYet, setLike)}>
                                         favorite
                                     </span>
                                     <div>{like}</div>

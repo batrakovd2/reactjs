@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
+import {Context} from "../context";
 
 const AddPostBlock = ({create}) => {
+
+    const {createPost} = useContext(Context);
 
     const [post, setPost] = useState({
         content: '',
@@ -17,24 +20,25 @@ const AddPostBlock = ({create}) => {
         }
     });
 
-    const addNewPost = (e) => {
+
+    const addNewPost = async (e) => {
         e.preventDefault();
-        const newPost = {
-            ...post, id: Date.now()
-        }
-        create(newPost);
-        setPost({
-            content: '',
-            comments: [],
-            like: 0,
-            user_id: 1,
-            attachment: "",
-            user: {
-                last_name: "Stamm 234",
-                logo: "/uploads/users/img3.jpg",
-                name: "Emanuel"
-            }
-        })
+        const newPost = {...post}
+
+        const response = await createPost(newPost);
+        console.log(response)
+        // setPost({
+        //     content: '',
+        //     comments: [],
+        //     like: 0,
+        //     user_id: 1,
+        //     attachment: "",
+        //     user: {
+        //         last_name: "Stamm 234",
+        //         logo: "/uploads/users/img3.jpg",
+        //         name: "Emanuel"
+        //     }
+        // })
     }
 
     return (
