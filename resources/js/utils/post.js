@@ -8,9 +8,12 @@ export const addPostLike = async (postId, likeYet, setLikeYet, setLike) => {
     }
 }
 
-export const createPost = async (post) => {
-    console.log(post)
+export const createPost = async (post, setPost) => {
     const response = await PostService.createPost(post);
+    if(response.status == 200) {
+        console.log(post, response)
+        setPost(response.data.post);
+    }
     return response.data;
 
 }

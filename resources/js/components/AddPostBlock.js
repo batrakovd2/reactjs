@@ -12,12 +12,9 @@ const AddPostBlock = ({create}) => {
         comments: [],
         like: 0,
         user_id: 1,
-        attachment: "",
-        user: {
-            last_name: "Stamm",
-            logo: "/uploads/users/img3.jpg",
-            name: "Emanuel"
-        }
+        attachment: "/uploads/post/img3.jpg",
+        user_name: "Emanuel",
+        user_logo: "/uploads/users/img3.jpg"
     });
 
 
@@ -26,7 +23,7 @@ const AddPostBlock = ({create}) => {
         const newPost = {...post}
 
         const response = await createPost(newPost);
-        console.log(response)
+        // console.log(response)
         // setPost({
         //     content: '',
         //     comments: [],
@@ -48,7 +45,7 @@ const AddPostBlock = ({create}) => {
                     <div className="card card-add-post">
                         <div className="card-header">
                             <img className="img-circle" src="https://picsum.photos/50" alt=""/>
-                            <span className="user-name">{post.user.last_name}</span>
+                            <span className="user-name">{post.user_name}</span>
                         </div>
 
                         <div className="card-body">
@@ -57,7 +54,7 @@ const AddPostBlock = ({create}) => {
                             </textarea>
                         </div>
                         <div className="card-footer">
-                            <MyButton onClick={addNewPost}>Отправить</MyButton>
+                            <MyButton onClick={() => {createPost(post, setPost) } }>Отправить</MyButton>
                             <MyInput  placeholder="Город"   />
                         </div>
                     </div>

@@ -7,8 +7,8 @@ const UserBlock = (props) => {
     return (
         <div className="user-block">
             <div className="img-wrap">
-                <img className="img-circle user-logo" src={user.logo} alt="User Image" />
-                <span className="user-name">{user.last_name + ' ' + user.name}</span>
+                <img className="img-circle user-logo" src={props.post.user_logo} alt="User Image" />
+                <span className="user-name">{props.post.user_name}</span>
             </div>
         </div>
     );

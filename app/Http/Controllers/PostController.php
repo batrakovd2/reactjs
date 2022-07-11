@@ -55,7 +55,7 @@ class PostController extends Controller
         try{
             $item = Post::create($request->all());
             if(!empty($item)) {
-                $result = ['status' => 200, 'descr' => 'Пост добавлен'];
+                $result = ['status' => 200, 'descr' => 'Пост добавлен', 'post' => $item];
             }
         } catch (\Exception $e) {
             Log::error($e);

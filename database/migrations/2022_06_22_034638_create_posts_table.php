@@ -19,6 +19,8 @@ class CreatePostsTable extends Migration
             $table->string("attachment")->nullable();
             $table->text("content")->nullable();
             $table->integer('like')->nullable();
+            $table->string('user_name')->nullable();
+            $table->string('user_logo')->nullable();
             $table->timestamps();
         });
     }

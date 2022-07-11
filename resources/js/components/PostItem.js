@@ -16,7 +16,7 @@ const PostItem = (props) => {
             <div className="col-12">
                 <div className="card card-post card-widget">
                     <div className="card-header">
-                        <UserBlock post={props.post} user={props.post.user} />
+                        <UserBlock post={props.post} user={props.post.user_name} />
                     </div>
                     <div className="card-body">
                         {

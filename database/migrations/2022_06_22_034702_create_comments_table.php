@@ -22,6 +22,8 @@ class CreateCommentsTable extends Migration
             $table->string('content')->nullable();
             $table->string('attachment')->nullable();
             $table->integer('like')->nullable();
+            $table->string('user_name')->nullable();
+            $table->string('user_logo')->nullable();
             $table->timestamps();
         });
     }

@@ -51,6 +51,8 @@ class CommentSeeder extends Seeder
                 "child_count" => 0,
                 "content" => $this->faker->realText(),
                 "attachment" => "/uploads/comments/img". rand(1, 10) .".jpg",
+                "user_name" => $this->faker->lastName() ." ". $this->faker->firstName(),
+                "user_logo" => "/uploads/post/img". rand(1, 10) .".jpg",
                 "like" => rand(1, 100)
             ];
             DB::table('comments')->insert($posts);
