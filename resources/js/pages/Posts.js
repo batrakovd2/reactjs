@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import AddPostBlock from "../components/AddPostBlock";
 import PostItem from "../components/PostItem";
 import {useFetching} from "../hooks/useFetching";
@@ -7,6 +7,7 @@ import {getPagesCount} from "../utils/pages";
 import PostList from "../components/PostList";
 import Loader from "../components/UI/loader/Loader";
 import {useObserver} from "../hooks/useObserver";
+import {Context} from "../context";
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
@@ -14,6 +15,7 @@ const Posts = () => {
     const [limit, setLimit] = useState(5);
     const [page, setPage] = useState(1);
     const lastElement = useRef();
+    const {createPost} = useContext(Context);
 
     const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
         const response = await PostService.getPosts(limit, page);
@@ -30,14 +32,9 @@ const Posts = () => {
         fetchPosts();
     }, [page]);
 
-    // const createPost = (newPost) => {
-    //     console.log(newPost)
-    //     setPosts([newPost, ...posts])
-    // }
-
     return(
         <div className="feed-container">
-            <AddPostBlock/>
+            <AddPostBlock create={createPost} posts={posts} setPosts={setPosts}  />
             {postError && <h1> Произошла ошибка ${postError}</h1> }
             <PostList posts={posts}/>
             { isPostLoading ? <Loader /> : '' }

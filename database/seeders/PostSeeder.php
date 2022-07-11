@@ -48,9 +48,9 @@ class PostSeeder extends Seeder
             $posts = [
                 "user_id" => rand(1, 10),
                 "content" => $this->faker->realText(),
-                "attachment" => "/uploads/post/img". rand(1, 10) .".jpg",
+                "attachment" => "/uploads/post/img". rand(1, 20) .".jpg",
                 "user_name" => $this->faker->lastName() ." ". $this->faker->firstName(),
-                "user_logo" => "/uploads/post/img". rand(1, 10) .".jpg",
+                "user_logo" => "/uploads/users/img". rand(1, 10) .".jpg",
                 "like" => rand(1, 100),
                 "created_at" => $this->faker->date()
             ];

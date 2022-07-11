@@ -3,11 +3,9 @@ import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 import {Context} from "../context";
 
-const AddPostBlock = ({create}) => {
+const AddPostBlock = ({create, posts, setPosts}) => {
 
-    const {createPost} = useContext(Context);
-
-    const [post, setPost] = useState({
+    const defaultPost = {
         content: '',
         comments: [],
         like: 0,
@@ -15,27 +13,12 @@ const AddPostBlock = ({create}) => {
         attachment: "/uploads/post/img3.jpg",
         user_name: "Emanuel",
         user_logo: "/uploads/users/img3.jpg"
-    });
+    }
 
+    const [post, setPost] = useState(defaultPost);
 
-    const addNewPost = async (e) => {
-        e.preventDefault();
-        const newPost = {...post}
-
-        const response = await createPost(newPost);
-        // console.log(response)
-        // setPost({
-        //     content: '',
-        //     comments: [],
-        //     like: 0,
-        //     user_id: 1,
-        //     attachment: "",
-        //     user: {
-        //         last_name: "Stamm 234",
-        //         logo: "/uploads/users/img3.jpg",
-        //         name: "Emanuel"
-        //     }
-        // })
+    const clearEditField = () => {
+        setPost(defaultPost);
     }
 
     return (
@@ -54,7 +37,10 @@ const AddPostBlock = ({create}) => {
                             </textarea>
                         </div>
                         <div className="card-footer">
-                            <MyButton onClick={() => {createPost(post, setPost) } }>Отправить</MyButton>
+                            <MyButton onClick={ () => {
+                                create(post, posts, setPosts)
+                                clearEditField()
+                            } }>Отправить</MyButton>
                             <MyInput  placeholder="Город"   />
                         </div>
                     </div>
