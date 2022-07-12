@@ -23,6 +23,12 @@ class PostController extends Controller
         if($response) $result = $post->like;
         return $result;
     }
+
+    public function updloadFile(Request $request) {
+        $path = $request->file('image')->store('post');
+
+        return $path;
+    }
     /**
      * Display a listing of the resource.
      *

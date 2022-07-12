@@ -21,6 +21,23 @@ const AddPostBlock = ({create, posts, setPosts}) => {
         setPost(defaultPost);
     }
 
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const fileSelectedHandler = event => {
+        console.log(event.target.files[0]);
+        setSelectedFile(event.target.files[0]);
+    }
+
+    const fileUploadHandler = () => {
+        const fd = new FormData();
+        fd.append('image', selectedFile, selectedFile.name)
+        axios.post('/api/post/upload', fd, {
+            onUploadProgress: progressEvent => {
+                console.log('upload progress' + Math.round(progressEvent.loaded / progressEvent.total * 100) + '%')
+            }
+        }).then(res => console.log(res));
+    }
+
     return (
         <div>
             <div className="row">
@@ -37,6 +54,11 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                             </textarea>
                         </div>
                         <div className="card-footer">
+                            <span className="material-symbols-outlined">
+                                attach_file
+                            </span>
+                            <input type="file" onChange={fileSelectedHandler}/>
+                            <button onClick={fileUploadHandler}>Upload</button>
                             <MyButton onClick={ () => {
                                 create(post, posts, setPosts)
                                 clearEditField()
