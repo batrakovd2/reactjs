@@ -1,7 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 import {Context} from "../context";
+import UploadFile from "./UI/input/UploadFile";
 
 const AddPostBlock = ({create, posts, setPosts}) => {
 
@@ -16,16 +17,10 @@ const AddPostBlock = ({create, posts, setPosts}) => {
     }
 
     const [post, setPost] = useState(defaultPost);
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const clearEditField = () => {
         setPost(defaultPost);
-    }
-
-    const [selectedFile, setSelectedFile] = useState(null);
-
-    const fileSelectedHandler = event => {
-        console.log(event.target.files[0]);
-        setSelectedFile(event.target.files[0]);
     }
 
     const fileUploadHandler = () => {
@@ -54,14 +49,12 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                             </textarea>
                         </div>
                         <div className="card-footer">
-                            <span className="material-symbols-outlined">
-                                attach_file
-                            </span>
-                            <input type="file" onChange={fileSelectedHandler}/>
-                            <button onClick={fileUploadHandler}>Upload</button>
+                            <UploadFile selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
+
                             <MyButton onClick={ () => {
                                 create(post, posts, setPosts)
                                 clearEditField()
+                                selectedFile ? fileUploadHandler() : ''
                             } }>Отправить</MyButton>
                             <MyInput  placeholder="Город"   />
                         </div>
