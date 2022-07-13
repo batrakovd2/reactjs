@@ -211,6 +211,10 @@
     cursor: pointer;
 }
 
+.cursor{
+    cursor: pointer;
+}
+
 @media (min-width: 300px) {
     .feed-container, .container-sm {
         width: 90%;

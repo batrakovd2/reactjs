@@ -13,7 +13,7 @@ const UploadFile = ({setSelectedFile}) => {
 
     return (
         <div>
-            <span className="material-symbols-outlined" onClick={onUploadInput}>
+            <span className="material-symbols-outlined cursor" onClick={onUploadInput}>
                 attach_file
             </span>
             <input style={{display:'none'}}

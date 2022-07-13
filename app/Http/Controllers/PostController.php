@@ -25,7 +25,7 @@ class PostController extends Controller
     }
 
     public function updloadFile(Request $request) {
-        $path = $request->file('image')->store('post');
+        $path = $request->file('image')->store('public/post');
 
         return $path;
     }
@@ -50,7 +50,7 @@ class PostController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in public.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
@@ -94,7 +94,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in public.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -106,7 +106,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from public.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

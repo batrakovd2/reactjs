@@ -21,16 +21,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
 
     const clearEditField = () => {
         setPost(defaultPost);
-    }
-
-    const fileUploadHandler = () => {
-        const fd = new FormData();
-        fd.append('image', selectedFile, selectedFile.name)
-        axios.post('/api/post/upload', fd, {
-            onUploadProgress: progressEvent => {
-                console.log('upload progress' + Math.round(progressEvent.loaded / progressEvent.total * 100) + '%')
-            }
-        }).then(res => console.log(res));
+        setSelectedFile(null);
     }
 
     return (
@@ -52,9 +43,9 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                             <UploadFile selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
 
                             <MyButton onClick={ () => {
-                                create(post, posts, setPosts)
+                                // selectedFile ? fileUploadHandler(selectedFile) : ''
+                                create(post, posts, setPosts, selectedFile)
                                 clearEditField()
-                                selectedFile ? fileUploadHandler() : ''
                             } }>Отправить</MyButton>
                             <MyInput  placeholder="Город"   />
                         </div>

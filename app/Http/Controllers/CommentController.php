@@ -42,7 +42,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in public.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -75,7 +75,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in public.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -87,7 +87,7 @@ class CommentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from public.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
