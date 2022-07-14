@@ -25,8 +25,9 @@ const createPostWithFile = async (newPost, posts, setPosts, selectedFile) => {
         }
     }).then(res => {
         if(res && res.status === 200) {
+            const filePath = res.data.replace('public', 'storage')
             return storePost(
-                {...newPost, attachment: res.data},
+                {...newPost, attachment: filePath},
                     posts,
                     setPosts
                 );

@@ -40,6 +40,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                             </textarea>
                         </div>
                         <div className="card-footer">
+
                             <UploadFile selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
 
                             <MyButton onClick={ () => {
@@ -47,7 +48,6 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                                 create(post, posts, setPosts, selectedFile)
                                 clearEditField()
                             } }>Отправить</MyButton>
-                            <MyInput  placeholder="Город"   />
                         </div>
                     </div>
                 </div>
