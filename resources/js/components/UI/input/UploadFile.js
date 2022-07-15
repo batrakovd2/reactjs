@@ -1,10 +1,35 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 
-const UploadFile = ({setSelectedFile}) => {
+const UploadFile = ({selectedFile, setSelectedFile, filePreview, setFilePreview}) => {
 
     const fileSelectedHandler = event => {
-        setSelectedFile(event.target.files[0]);
+        const file = event.target.files[0];
+        setSelectedFile(file);
+        onSelectFile(event);
+
     }
+
+    const onSelectFile = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setSelectedFile(undefined)
+            return
+        }
+
+        setSelectedFile(e.target.files[0])
+    }
+
+    useEffect(() => {
+        if (!selectedFile) {
+            setFilePreview(undefined)
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setFilePreview(objectUrl)
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile])
 
     const uploadInput = useRef(null);
     const onUploadInput = () => {

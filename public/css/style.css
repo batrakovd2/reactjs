@@ -38,9 +38,12 @@
 .card-footer{
     background: none;
     border-top: none;
+    align-items: center;
+}
+
+.control-space-wrapper{
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .card-add-post{

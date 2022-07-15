@@ -18,11 +18,12 @@ const AddPostBlock = ({create, posts, setPosts}) => {
 
     const [post, setPost] = useState(defaultPost);
     const [selectedFile, setSelectedFile] = useState(null);
-
+    const [filePreview, setFilePreview] = useState([]);
     const clearEditField = () => {
         setPost(defaultPost);
         setSelectedFile(null);
     }
+
 
     return (
         <div>
@@ -40,14 +41,22 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                             </textarea>
                         </div>
                         <div className="card-footer">
+                            <div className="control-space-wrapper">
+                                <UploadFile selectedFile={selectedFile} setSelectedFile={setSelectedFile} filePreview={filePreview} setFilePreview={setFilePreview}/>
 
-                            <UploadFile selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
-
-                            <MyButton onClick={ () => {
-                                // selectedFile ? fileUploadHandler(selectedFile) : ''
-                                create(post, posts, setPosts, selectedFile)
-                                clearEditField()
-                            } }>Отправить</MyButton>
+                                <MyButton onClick={ () => {
+                                    // selectedFile ? fileUploadHandler(selectedFile) : ''
+                                    create(post, posts, setPosts, selectedFile)
+                                    clearEditField()
+                                } }>Отправить</MyButton>
+                            </div>
+                            <div className="filePreview">
+                                {
+                                    selectedFile
+                                        ? <span><img src={filePreview} /></span>
+                                        : ''
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
