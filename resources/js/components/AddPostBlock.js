@@ -17,12 +17,13 @@ const AddPostBlock = ({create, posts, setPosts}) => {
     }
 
     const [post, setPost] = useState(defaultPost);
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile, setSelectedFile] = useState([]);
     const [filePreview, setFilePreview] = useState([]);
     const clearEditField = () => {
         setPost(defaultPost);
-        setSelectedFile(null);
+        setSelectedFile([]);
     }
+    console.log(filePreview)
 
 
     return (
@@ -52,8 +53,8 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                             </div>
                             <div className="filePreview">
                                 {
-                                    selectedFile
-                                        ? <span><img src={filePreview} /></span>
+                                    selectedFile && filePreview
+                                        ? filePreview.map((item) => <img key={item} src={item} />)
                                         : ''
                                 }
                             </div>

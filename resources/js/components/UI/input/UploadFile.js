@@ -4,28 +4,31 @@ const UploadFile = ({selectedFile, setSelectedFile, filePreview, setFilePreview}
 
     const fileSelectedHandler = event => {
         const file = event.target.files[0];
-        setSelectedFile(file);
+        setSelectedFile([...selectedFile, file]);
         onSelectFile(event);
 
     }
 
     const onSelectFile = e => {
         if (!e.target.files || e.target.files.length === 0) {
-            setSelectedFile(undefined)
+            setSelectedFile([])
             return
         }
 
-        setSelectedFile(e.target.files[0])
+        setSelectedFile([...selectedFile, e.target.files[0]])
     }
 
     useEffect(() => {
         if (!selectedFile) {
-            setFilePreview(undefined)
+            setFilePreview([])
             return
         }
 
-        const objectUrl = URL.createObjectURL(selectedFile)
-        setFilePreview(objectUrl)
+        const objectUrl = selectedFile.map((item) => {
+            setFilePreview([...filePreview, URL.createObjectURL(item)])
+            return URL.createObjectURL(item)
+        })
+        // console.log(objectUrl)
 
         // free memory when ever this component is unmounted
         return () => URL.revokeObjectURL(objectUrl)

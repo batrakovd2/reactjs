@@ -218,6 +218,12 @@
     cursor: pointer;
 }
 
+.filePreview img{
+    width: 80px;
+    margin-right: 5px;
+    vertical-align: top;
+}
+
 @media (min-width: 300px) {
     .feed-container, .container-sm {
         width: 90%;
