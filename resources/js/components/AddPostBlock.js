@@ -3,6 +3,7 @@ import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 import {Context} from "../context";
 import UploadFile from "./UI/input/UploadFile";
+import PreviewUploadFiles from "./UI/PreviewUploadFiles";
 
 const AddPostBlock = ({create, posts, setPosts}) => {
 
@@ -23,8 +24,8 @@ const AddPostBlock = ({create, posts, setPosts}) => {
         setPost(defaultPost);
         setSelectedFile([]);
     }
-    console.log(filePreview)
-
+    // console.log(filePreview)
+    // console.log(selectedFile)
 
     return (
         <div>
@@ -51,13 +52,8 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                                     clearEditField()
                                 } }>Отправить</MyButton>
                             </div>
-                            <div className="filePreview">
-                                {
-                                    selectedFile && filePreview
-                                        ? filePreview.map((item) => <img key={item} src={item} />)
-                                        : ''
-                                }
-                            </div>
+                            <PreviewUploadFiles selectedFile={selectedFile} filePreview={filePreview} setSelectedFile={setSelectedFile} setFilePreview={setFilePreview} />
+
                         </div>
                     </div>
                 </div>

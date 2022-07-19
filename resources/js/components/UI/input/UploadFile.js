@@ -20,12 +20,12 @@ const UploadFile = ({selectedFile, setSelectedFile, filePreview, setFilePreview}
 
     useEffect(() => {
         if (!selectedFile) {
-            setFilePreview([])
+            setFilePreview([{name: "", blob: ""}])
             return
         }
 
         const objectUrl = selectedFile.map((item) => {
-            setFilePreview([...filePreview, URL.createObjectURL(item)])
+            setFilePreview([...filePreview, {name: item.name, blob: URL.createObjectURL(item)}])
             return URL.createObjectURL(item)
         })
         // console.log(objectUrl)
