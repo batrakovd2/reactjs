@@ -18,7 +18,12 @@ export const createPost = async (newPost, posts, setPosts, selectedFile) => {
 
 const createPostWithFile = async (newPost, posts, setPosts, selectedFile) => {
     const fd = new FormData();
-    fd.append('image', selectedFile, selectedFile.name)
+    if(selectedFile && selectedFile.length) {
+        selectedFile.map((item) => {
+            fd.append('image', item, item.name)
+        })
+    }
+
     axios.post('/api/post/upload', fd, {
         onUploadProgress: progressEvent => {
             console.log('upload progress' + Math.round(progressEvent.loaded / progressEvent.total * 100) + '%')
