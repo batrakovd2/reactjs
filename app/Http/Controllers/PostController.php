@@ -25,7 +25,14 @@ class PostController extends Controller
     }
 
     public function updloadFile(Request $request) {
-        $path = $request->file('image')->store('public/post');
+//        dd($request);
+        $files = $path = $request->all();
+
+        if(is_array($files)) {
+            foreach ($files as $fs) {
+                $path[] = $fs->store('public/post');
+            }
+        }
 
         return $path;
     }
