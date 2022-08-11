@@ -21,7 +21,7 @@ const createPostWithFile = async (newPost, posts, setPosts, selectedFile) => {
     if(selectedFile && selectedFile.length) {
         selectedFile.map((item, i) => {
             console.log(i)
-            fd.append('image-' + i, item, item.name)
+            fd.append('image[]', item, item.name)
         })
     }
     console.log(selectedFile);
@@ -31,7 +31,9 @@ const createPostWithFile = async (newPost, posts, setPosts, selectedFile) => {
         }
     }).then(res => {
         if(res && res.status === 200) {
-            const filePath = res.data.replace('public', 'storage')
+
+            const filePath = res.data.map(item => { return  item.replace('public', 'storage') })
+            console.log(filePath)
             return storePost(
                 {...newPost, attachment: filePath},
                     posts,
