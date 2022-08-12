@@ -9,8 +9,12 @@ use Illuminate\Support\Facades\Log;
 class PostController extends Controller
 {
     public function getPostList(Request $request) {
+        $attachment = [];
         $limit = $request->input('params');
         $posts = Post::getPostList($limit["limit"]);
+        foreach ($posts as $pst) {
+            $pst['attachment'] = explode(',', $pst['attachment']);
+        }
         return $posts;
     }
 
@@ -65,6 +69,8 @@ class PostController extends Controller
     {
         $result = [];
         try{
+            $attachments = $request->input('attachment');
+            $request['attachment'] = !empty($attachments) ? implode(',', $attachments) : [];
             $item = Post::create($request->all());
             if(!empty($item)) {
                 $result = ['status' => 200, 'descr' => 'Пост добавлен', 'post' => $item];

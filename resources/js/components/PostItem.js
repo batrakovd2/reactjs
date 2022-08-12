@@ -21,10 +21,9 @@ const PostItem = (props) => {
                     <div className="card-body">
                         {
                             props.post.attachment.length
-                                ?   <img className="img-fluid pad" src={props.post.attachment} alt="Photo" />
+                                ? props.post.attachment.map((item) => <img className="img-fluid pad" src={item} key={item} alt="Photo" />)
                                 : ""
                         }
-
                         <p>
                             {props.post.content}
                         </p>

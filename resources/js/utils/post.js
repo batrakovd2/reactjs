@@ -33,7 +33,7 @@ const createPostWithFile = async (newPost, posts, setPosts, selectedFile) => {
         if(res && res.status === 200) {
 
             const filePath = res.data.map(item => { return  item.replace('public', 'storage') })
-            console.log(filePath)
+
             return storePost(
                 {...newPost, attachment: filePath},
                     posts,
