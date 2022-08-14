@@ -8,19 +8,21 @@ export const addPostLike = async (postId, likeYet, setLikeYet, setLike) => {
     }
 }
 
-export const createPost = async (newPost, posts, setPosts, selectedFile) => {
-    if(selectedFile) {
-        return  createPostWithFile(newPost, posts, setPosts, selectedFile)
+export const createPost = async (newPost, posts, setPosts, selectedFile, setFilePreview) => {
+
+    if(selectedFile.length) {
+        console.log('1');
+        return  createPostWithFile(newPost, posts, setPosts, selectedFile, setFilePreview)
     } else {
+        console.log('2');
         return storePost(newPost, posts, setPosts)
     }
 }
 
-const createPostWithFile = async (newPost, posts, setPosts, selectedFile) => {
+const createPostWithFile = async (newPost, posts, setPosts, selectedFile, setFilePreview) => {
     const fd = new FormData();
     if(selectedFile && selectedFile.length) {
         selectedFile.map((item, i) => {
-            console.log(i)
             fd.append('image[]', item, item.name)
         })
     }
@@ -33,7 +35,7 @@ const createPostWithFile = async (newPost, posts, setPosts, selectedFile) => {
         if(res && res.status === 200) {
 
             const filePath = res.data.map(item => { return  item.replace('public', 'storage') })
-
+            setFilePreview([]);
             return storePost(
                 {...newPost, attachment: filePath},
                     posts,
@@ -44,7 +46,9 @@ const createPostWithFile = async (newPost, posts, setPosts, selectedFile) => {
 }
 
 const storePost = async (newPost, posts, setPosts) => {
+    console.log(newPost);
     const response = await PostService.createPost(newPost);
+    console.log(response);
     if(response.status === 200) {
         newPost = {...newPost, id: response.data.post.id};
         setPosts([newPost, ...posts]);

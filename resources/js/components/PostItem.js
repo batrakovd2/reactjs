@@ -10,7 +10,7 @@ const PostItem = (props) => {
     const [likeYet, setLikeYet] = useState(false);
 
     const {addPostLike} = useContext(Context);
-
+    console.log(props);
     return (
         <div className="row">
             <div className="col-12">
@@ -19,14 +19,17 @@ const PostItem = (props) => {
                         <UserBlock post={props.post} user={props.post.user_name} />
                     </div>
                     <div className="card-body">
-                        {
-                            props.post.attachment.length
-                                ? props.post.attachment.map((item) => <img className="img-fluid pad" src={item} key={item} alt="Photo" />)
-                                : ""
-                        }
                         <p>
                             {props.post.content}
                         </p>
+
+                        {
+
+                            props.post.attachment.length && props.post.attachment[0]
+                                ? props.post.attachment.map((item) => <img className="img-fluid" src={item} key={item} alt="Photo" />)
+                                : ""
+                        }
+
                     </div>
                     <div className="card-footer">
                         <div className="post-control">

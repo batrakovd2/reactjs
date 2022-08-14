@@ -30,12 +30,12 @@ class PostController extends Controller
 
     public function updloadFile(Request $request) {
         $files = $request->all();
-        if(is_array($files['image'])) {
+        $path = [];
+        if(!empty($files['image']) && is_array($files['image'])) {
             foreach ($files['image'] as $fs) {
                 $path[] = $fs->store('public/post');
             }
         }
-
 
         return $path;
     }
@@ -68,16 +68,19 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $result = [];
-        try{
+//        try{
             $attachments = $request->input('attachment');
-            $request['attachment'] = !empty($attachments) ? implode(',', $attachments) : [];
+//        dd($request);
+            $request['attachment'] = !empty($attachments) && is_array($attachments) ? implode(',', $attachments) : '';
+
             $item = Post::create($request->all());
+
             if(!empty($item)) {
                 $result = ['status' => 200, 'descr' => 'Пост добавлен', 'post' => $item];
             }
-        } catch (\Exception $e) {
-            Log::error($e);
-        }
+//        } catch (\Exception $e) {
+//            Log::error($e);
+//        }
 
         return $result;
 

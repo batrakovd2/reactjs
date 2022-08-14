@@ -12,7 +12,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
         comments: [],
         like: 0,
         user_id: 1,
-        attachment: "/uploads/post/img3.jpg",
+        attachment: "",
         user_name: "Emanuel",
         user_logo: "/uploads/users/img3.jpg"
     }
@@ -48,7 +48,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
 
                                 <MyButton onClick={ () => {
                                     // selectedFile ? fileUploadHandler(selectedFile) : ''
-                                    create(post, posts, setPosts, selectedFile)
+                                    create(post, posts, setPosts, selectedFile, setFilePreview)
                                     clearEditField()
                                 } }>Отправить</MyButton>
                             </div>
