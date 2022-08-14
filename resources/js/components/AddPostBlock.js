@@ -23,6 +23,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
     const clearEditField = () => {
         setPost(defaultPost);
         setSelectedFile([]);
+        setFilePreview([]);
     }
     // console.log(filePreview)
     // console.log(selectedFile)
@@ -50,7 +51,8 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                                     // selectedFile ? fileUploadHandler(selectedFile) : ''
                                     create(post, posts, setPosts, selectedFile, setFilePreview)
                                     clearEditField()
-                                } }>Отправить</MyButton>
+                                    }
+                                }>Отправить</MyButton>
                             </div>
                             <PreviewUploadFiles selectedFile={selectedFile} filePreview={filePreview} setSelectedFile={setSelectedFile} setFilePreview={setFilePreview} />
 

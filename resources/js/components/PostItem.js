@@ -10,7 +10,6 @@ const PostItem = (props) => {
     const [likeYet, setLikeYet] = useState(false);
 
     const {addPostLike} = useContext(Context);
-    console.log(props);
     return (
         <div className="row">
             <div className="col-12">
