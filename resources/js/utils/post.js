@@ -35,7 +35,7 @@ const createPostWithFile = async (newPost, posts, setPosts, selectedFile, setFil
         if(res && res.status === 200) {
 
             const filePath = res.data.map(item => { return  item.replace('public', 'storage') })
-            // setFilePreview([]);
+            setFilePreview([]);
             return storePost(
                 {...newPost, attachment: filePath},
                     posts,

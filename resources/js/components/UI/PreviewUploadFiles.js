@@ -3,16 +3,10 @@ import React from 'react';
 const PreviewUploadFiles = ({selectedFile, filePreview, setSelectedFile, setFilePreview}) => {
 
     const removeImagePreview = (fileItem) => {
-        // console.log(selectedFile, filePreview)
         const newSelectFiles = selectedFile.filter(item => item.name !== fileItem.name)
         const newFilePreview = filePreview.filter(item => item.blob !== fileItem.blob)
-        console.log(selectedFile, filePreview)
-        console.log(newSelectFiles, newFilePreview)
-        // setSelectedFile([])
-        // setFilePreview([])
-        setSelectedFile(newSelectFiles)
         setFilePreview(newFilePreview)
-        console.log(selectedFile, filePreview)
+        setSelectedFile(newSelectFiles)
     }
 
     return (
