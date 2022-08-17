@@ -31,9 +31,12 @@ class PostController extends Controller
     public function updloadFile(Request $request) {
         $files = $request->all();
         $path = [];
+        $year = date('Y');
+        $month = date('m');
+        $day = date('d');
         if(!empty($files['image']) && is_array($files['image'])) {
             foreach ($files['image'] as $fs) {
-                $path[] = $fs->store('public/post');
+                $path[] = $fs->store('public/post/'.$year.'/'.$month.'/'.$day);
             }
         }
 
