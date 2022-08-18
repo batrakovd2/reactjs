@@ -24,6 +24,7 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
+        "heic2any": "^0.0.3",
         "react-router-dom": "^5.3.3"
     }
 }

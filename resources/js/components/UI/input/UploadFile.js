@@ -1,4 +1,5 @@
 import React, {useEffect, useRef} from 'react';
+import heic2any from "heic2any";
 
 const UploadFile = ({selectedFile, setSelectedFile, filePreview, setFilePreview}) => {
 
@@ -8,6 +9,7 @@ const UploadFile = ({selectedFile, setSelectedFile, filePreview, setFilePreview}
             return
         }
         const file = event.target.files[0];
+        const heic2any = require("heic2any");
         setSelectedFile([...selectedFile, file]);
         setFilePreview([...filePreview, {name: file.name, blob: URL.createObjectURL(file)}])
     }
