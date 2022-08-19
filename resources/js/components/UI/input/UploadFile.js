@@ -9,9 +9,25 @@ const UploadFile = ({selectedFile, setSelectedFile, filePreview, setFilePreview}
             return
         }
         const file = event.target.files[0];
-        const heic2any = require("heic2any");
-        setSelectedFile([...selectedFile, file]);
-        setFilePreview([...filePreview, {name: file.name, blob: URL.createObjectURL(file)}])
+        console.log(file)
+        if(!file.type) {
+            //Формат Iphone heic
+            if(file.name.includes('.heic') || file.name.includes('.heif')) {
+                const heic2any = require("heic2any");
+                heic2any({
+                    blob: file,
+                    toType: 'image/jpeg',
+                    quality: 0.9
+                }).then(blob => {
+                    setSelectedFile([...selectedFile, blob]);
+                    setFilePreview([...filePreview, {name: file.name, blob: URL.createObjectURL(blob)}])
+                })
+            }
+        } else {
+            setSelectedFile([...selectedFile, file]);
+            setFilePreview([...filePreview, {name: file.name, blob: URL.createObjectURL(file)}])
+        }
+
     }
 
     const uploadInput = useRef(null);
