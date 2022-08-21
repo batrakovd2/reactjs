@@ -4,15 +4,17 @@ import heic2any from "heic2any";
 const UploadFile = ({selectedFile, setSelectedFile, filePreview, setFilePreview}) => {
 
     const fileSelectedHandler = event => {
+        console.log(event)
         if (!event.target.files || event.target.files.length === 0) {
             setSelectedFile([])
             return
         }
         const file = event.target.files[0];
-        console.log(file)
+
         if(!file.type) {
             //Формат Iphone heic
-            if(file.name.includes('.heic') || file.name.includes('.heif')) {
+            if(file.name.includes('.heic') || file.name.includes('.heif')
+                || file.name.includes('.HEIF') || file.name.includes('.HEIC')) {
                 const heic2any = require("heic2any");
                 heic2any({
                     blob: file,
@@ -27,7 +29,17 @@ const UploadFile = ({selectedFile, setSelectedFile, filePreview, setFilePreview}
             setSelectedFile([...selectedFile, file]);
             setFilePreview([...filePreview, {name: file.name, blob: URL.createObjectURL(file)}])
         }
+    }
 
+    const checkType = (file) => {
+        if(file.type) {
+            file.type.inludes('image/jpg')
+            file.type.inludes('image/jpeg')
+            file.type.inludes('image/png')
+            file.type.inludes('image/gif')
+            file.type.inludes('image/svg')
+            file.type.inludes('image/webp')
+        }
     }
 
     const uploadInput = useRef(null);
