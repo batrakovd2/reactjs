@@ -55,13 +55,13 @@
     border-radius: 3px;
     padding: 5px 7px;
     width: 100%;
-    /*resize: none;*/
-    /*transition: all 0.5s;*/
+    height: 81px;
+    max-height: 312px;
+    min-height: 38px;
 }
 
 .create-post-area:focus-visible{
     outline: none;
-    min-height: 104px;
     resize: vertical;
 }
 

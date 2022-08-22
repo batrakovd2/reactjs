@@ -1,9 +1,10 @@
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 import {Context} from "../context";
 import UploadFile from "./UI/input/UploadFile";
 import PreviewUploadFiles from "./UI/PreviewUploadFiles";
+import Picker from 'emoji-picker-react';
 
 const AddPostBlock = ({create, posts, setPosts}) => {
 
@@ -20,11 +21,33 @@ const AddPostBlock = ({create, posts, setPosts}) => {
     const [post, setPost] = useState(defaultPost);
     const [selectedFile, setSelectedFile] = useState([]);
     const [filePreview, setFilePreview] = useState([]);
+    const [chosenEmoji, setChosenEmoji] = useState(null);
+    const [position, setPosition] = useState(0);
+    const refText = useRef(null);
+
+    const onEmojiClick = (event, emojiObject) => {
+        setChosenEmoji(emojiObject);
+    };
+
+    const onChangeText = (e) => {
+        console.log(e)
+
+        setPost({...post, content: e.target.value})
+    }
+
     const clearEditField = () => {
         setPost(defaultPost);
         setSelectedFile([]);
         setFilePreview([]);
     }
+
+    useEffect(() => {
+        if(chosenEmoji) {
+            let newContent = post.content.substr(0, position) + chosenEmoji.emoji + post.content.substr(position, post.content.length)
+            setPosition(position + chosenEmoji.emoji.length)
+            setPost({...post, content: newContent})
+        }
+    }, [chosenEmoji])
     // console.log(filePreview)
     // console.log(selectedFile)
 
@@ -39,7 +62,13 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                         </div>
 
                         <div className="card-body">
-                            <textarea className="create-post-area" value={post.content} onChange={e => setPost({...post, content: e.target.value})}>
+                            <Picker onEmojiClick={onEmojiClick} />
+                            {chosenEmoji ? (
+                                <span>You chose: {chosenEmoji.emoji}</span>
+                            ) : (
+                                <span>No emoji Chosen</span>
+                            )}
+                            <textarea className="create-post-area" value={post.content} onChange={onChangeText} onKeyDown={e => {setPosition(e.target.selectionStart)}} ref={refText}>
                                 {post.content}
                             </textarea>
                         </div>
