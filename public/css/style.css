@@ -52,16 +52,17 @@
 
 .create-post-area{
     border: 1px solid #dee2e6;
-    min-height: 100px;
     border-radius: 3px;
     padding: 5px 7px;
     width: 100%;
-    resize: none;
+    /*resize: none;*/
+    /*transition: all 0.5s;*/
 }
 
 .create-post-area:focus-visible{
-    /*border: none;*/
     outline: none;
+    min-height: 104px;
+    resize: vertical;
 }
 
 .img-circle{

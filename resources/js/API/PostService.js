@@ -7,7 +7,6 @@ export default class PostService {
                 limit: limit
             }
         });
-        console.log(response);
         return response;
     }
 
