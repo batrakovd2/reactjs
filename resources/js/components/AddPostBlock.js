@@ -23,15 +23,14 @@ const AddPostBlock = ({create, posts, setPosts}) => {
     const [filePreview, setFilePreview] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
     const [position, setPosition] = useState(0);
-    const refText = useRef(null);
+    const [isShowEmoji, setShowEmoji] = useState(false);
 
     const onEmojiClick = (event, emojiObject) => {
         setChosenEmoji(emojiObject);
     };
 
     const onChangeText = (e) => {
-        console.log(e)
-
+        setPosition(e.target.selectionStart)
         setPost({...post, content: e.target.value})
     }
 
@@ -62,13 +61,14 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                         </div>
 
                         <div className="card-body">
-                            <Picker onEmojiClick={onEmojiClick} />
-                            {chosenEmoji ? (
-                                <span>You chose: {chosenEmoji.emoji}</span>
-                            ) : (
-                                <span>No emoji Chosen</span>
-                            )}
-                            <textarea className="create-post-area" value={post.content} onChange={onChangeText} onKeyDown={e => {setPosition(e.target.selectionStart)}} ref={refText}>
+
+                            <span className="material-symbols-outlined emoji-btn" onClick={(e) => { setShowEmoji(!isShowEmoji) }}>
+                                mood
+                                <div className={isShowEmoji ? 'emoji-picker-wrapper active' : 'emoji-picker-wrapper'}>
+                                    <Picker onEmojiClick={onEmojiClick} />
+                                </div>
+                            </span>
+                            <textarea className="create-post-area" value={post.content} onChange={onChangeText} onClick={e => {setPosition(e.target.selectionStart)}}>
                                 {post.content}
                             </textarea>
                         </div>

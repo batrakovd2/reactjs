@@ -237,6 +237,25 @@
     top: 0px;
 }
 
+.emoji-picker-wrapper{
+    position: absolute;
+    z-index: 10;
+    right: 32px;
+    top: 0;
+    display: none;
+}
+
+.emoji-picker-wrapper.active{
+    display: block;
+}
+
+.emoji-btn{
+    position: absolute;
+    right: 25px;
+    top: 89px;
+    cursor: pointer;
+}
+
 @media (min-width: 300px) {
     .feed-container, .container-sm {
         width: 90%;
