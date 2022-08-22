@@ -27,11 +27,23 @@ const AddPostBlock = ({create, posts, setPosts}) => {
 
     const onEmojiClick = (event, emojiObject) => {
         setChosenEmoji(emojiObject);
-    };
+    }
 
     const onChangeText = (e) => {
         setPosition(e.target.selectionStart)
         setPost({...post, content: e.target.value})
+    }
+
+    const onEmojiBtnClick = (e) => {
+        setShowEmoji(!isShowEmoji)
+        document.addEventListener("click", function(event) {
+            console.log(event.target.className)
+            const classTarget = event.target.className;
+            var obj = document.querySelector(".emoji-picker-wrapper");
+            if (!classTarget.inludes('emoji-picker-wrapper')) {
+                setShowEmoji(false)
+            }
+        });
     }
 
     const clearEditField = () => {
@@ -47,8 +59,6 @@ const AddPostBlock = ({create, posts, setPosts}) => {
             setPost({...post, content: newContent})
         }
     }, [chosenEmoji])
-    // console.log(filePreview)
-    // console.log(selectedFile)
 
     return (
         <div>
@@ -62,7 +72,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
 
                         <div className="card-body">
 
-                            <span className="material-symbols-outlined emoji-btn" onClick={(e) => { setShowEmoji(!isShowEmoji) }}>
+                            <span className="material-symbols-outlined emoji-btn" onClick={onEmojiBtnClick}>
                                 mood
                                 <div className={isShowEmoji ? 'emoji-picker-wrapper active' : 'emoji-picker-wrapper'}>
                                     <Picker onEmojiClick={onEmojiClick} />
