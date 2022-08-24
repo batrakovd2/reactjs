@@ -25,13 +25,6 @@ const AddPostBlock = ({create, posts, setPosts}) => {
     const [position, setPosition] = useState(0);
     const [isShowEmoji, setShowEmoji] = useState(false);
 
-    document.addEventListener("click", function(event) {
-        const classTarget = event.target.className;
-        if (!classTarget.includes('emoji-btn')) {
-            setShowEmoji(false)
-        }
-    });
-
     const onEmojiClick = (event, emojiObject) => {
         setChosenEmoji(emojiObject);
     }
@@ -59,6 +52,14 @@ const AddPostBlock = ({create, posts, setPosts}) => {
         }
     }, [chosenEmoji])
 
+    const rootEl = useRef(null);
+
+    useEffect(() => {
+        const onClick = e => rootEl.current.contains(e.target) || console.log('клик вне компонента');
+        document.addEventListener('click', onClick);
+        return () => document.removeEventListener('click', onClick);
+    }, []);
+
     return (
         <div>
             <div className="row">
@@ -73,8 +74,8 @@ const AddPostBlock = ({create, posts, setPosts}) => {
 
                             <span className="material-symbols-outlined emoji-btn" onClick={() => setShowEmoji(!isShowEmoji)}>
                                 mood
-                                <div className={isShowEmoji ? 'emoji-picker-wrapper active' : 'emoji-picker-wrapper'}>
-                                    <Picker onEmojiClick={onEmojiClick} />
+                                <div ref={rootEl} className={isShowEmoji ? 'emoji-picker-wrapper active' : 'emoji-picker-wrapper'}>
+                                    <Picker onEmojiClick={onEmojiClick} disableSearchBar={true} />
                                 </div>
                             </span>
                             <textarea className="create-post-area" value={post.content} onChange={onChangeText} onClick={e => {setPosition(e.target.selectionStart)}}>
