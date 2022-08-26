@@ -6,7 +6,7 @@ import UploadFile from "./UI/input/UploadFile";
 import PreviewUploadFiles from "./UI/PreviewUploadFiles";
 import Picker from 'emoji-picker-react';
 
-const AddPostBlock = ({create, posts, setPosts}) => {
+const AddCommentBlock = ({create, posts, setPosts}) => {
 
     const defaultPost = {
         content: '',
@@ -90,7 +90,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                                     // selectedFile ? fileUploadHandler(selectedFile) : ''
                                     create(post, posts, setPosts, selectedFile, setFilePreview)
                                     clearEditField()
-                                    }
+                                }
                                 }>Отправить</MyButton>
                             </div>
                             <PreviewUploadFiles selectedFile={selectedFile} filePreview={filePreview} setSelectedFile={setSelectedFile} setFilePreview={setFilePreview} />
@@ -103,4 +103,4 @@ const AddPostBlock = ({create, posts, setPosts}) => {
     );
 };
 
-export default AddPostBlock;
+export default AddCommentBlock;

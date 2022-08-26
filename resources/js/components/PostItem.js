@@ -4,10 +4,14 @@ import PostService from "../API/PostService";
 import CommentList from "./CommentList";
 import UserBlock from "./UserBlock";
 import {Context} from "../context";
+import AddPostBlock from "./AddPostBlock";
 
 const PostItem = (props) => {
     const [like, setLike] = useState(props.post.like);
     const [likeYet, setLikeYet] = useState(false);
+    const createPost = () => {}
+    const [posts, setPosts] = useState('')
+
 
     const {addPostLike} = useContext(Context);
     return (
@@ -53,6 +57,7 @@ const PostItem = (props) => {
                             </div>
                         </div>
                     </div>
+                    <AddPostBlock create={createPost} posts={posts} setPosts={setPosts}  />
                     { props.post.comments.length
                         ? <CommentList posts={props.post} comments={props.post.comments} />
                         : ''
