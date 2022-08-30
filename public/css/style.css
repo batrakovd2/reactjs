@@ -272,6 +272,10 @@
     top: 75px;
 }
 
+.post-comment-control{
+    cursor: pointer;
+}
+
 @media (min-width: 300px) {
     .feed-container, .container-sm {
         width: 90%;

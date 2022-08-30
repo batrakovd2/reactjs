@@ -12,6 +12,7 @@ const PostItem = (props) => {
     const [likeYet, setLikeYet] = useState(false);
     const createPost = () => {}
     const [posts, setPosts] = useState('')
+    const [showAddComment, setShowAddComment] = useState(false);
 
 
     const {addPostLike} = useContext(Context);
@@ -52,16 +53,20 @@ const PostItem = (props) => {
                             </div>
 
                             <div className="float-right post-comment-control">
-                                <span className="material-symbols-outlined">
+                                <span className="material-symbols-outlined" onClick={() => {setShowAddComment(!showAddComment)}}>
                                 chat
                                 </span>
                             </div>
                         </div>
                     </div>
-                    <AddCommentBlock create={createPost} posts={posts} setPosts={setPosts}  />
+
                     { props.post.comments.length
                         ? <CommentList posts={props.post} comments={props.post.comments} />
                         : ''
+                    }
+                    {showAddComment
+                        ? <AddCommentBlock create={createPost} posts={posts} setPosts={setPosts}  />
+                        : ""
                     }
 
                 </div>
