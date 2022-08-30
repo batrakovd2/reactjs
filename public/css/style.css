@@ -256,6 +256,22 @@
     cursor: pointer;
 }
 
+.card-add-comment {
+    border: none;
+}
+
+.card-add-comment .card-header img{
+    width: 35px;
+}
+
+.card-add-comment .create-post-area{
+    height: 38px;
+}
+
+.card-add-comment .emoji-btn{
+    top: 75px;
+}
+
 @media (min-width: 300px) {
     .feed-container, .container-sm {
         width: 90%;

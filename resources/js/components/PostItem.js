@@ -5,6 +5,7 @@ import CommentList from "./CommentList";
 import UserBlock from "./UserBlock";
 import {Context} from "../context";
 import AddPostBlock from "./AddPostBlock";
+import AddCommentBlock from "./AddCommentBlock";
 
 const PostItem = (props) => {
     const [like, setLike] = useState(props.post.like);
@@ -57,7 +58,7 @@ const PostItem = (props) => {
                             </div>
                         </div>
                     </div>
-                    <AddPostBlock create={createPost} posts={posts} setPosts={setPosts}  />
+                    <AddCommentBlock create={createPost} posts={posts} setPosts={setPosts}  />
                     { props.post.comments.length
                         ? <CommentList posts={props.post} comments={props.post.comments} />
                         : ''

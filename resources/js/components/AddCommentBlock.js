@@ -64,7 +64,7 @@ const AddCommentBlock = ({create, posts, setPosts}) => {
         <div>
             <div className="row">
                 <div className="col-md-12">
-                    <div className="card card-add-post">
+                    <div className="card card-add-comment">
                         <div className="card-header">
                             <img className="img-circle" src="https://picsum.photos/50" alt=""/>
                             <span className="user-name">{post.user_name}</span>
