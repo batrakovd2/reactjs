@@ -11,10 +11,8 @@ export const addPostLike = async (postId, likeYet, setLikeYet, setLike) => {
 export const createPost = async (newPost, posts, setPosts, selectedFile, setFilePreview) => {
 
     if(selectedFile.length) {
-        console.log('1');
         return  createPostWithFile(newPost, posts, setPosts, selectedFile, setFilePreview)
     } else {
-        console.log('2');
         return storePost(newPost, posts, setPosts)
     }
 }
@@ -26,7 +24,6 @@ const createPostWithFile = async (newPost, posts, setPosts, selectedFile, setFil
             fd.append('image[]', item, item.name)
         })
     }
-    console.log(selectedFile);
     axios.post('/api/post/upload', fd, {
         onUploadProgress: progressEvent => {
             console.log('upload progress' + Math.round(progressEvent.loaded / progressEvent.total * 100) + '%')

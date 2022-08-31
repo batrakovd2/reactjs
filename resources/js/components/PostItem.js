@@ -10,7 +10,7 @@ import AddCommentBlock from "./AddCommentBlock";
 const PostItem = (props) => {
     const [like, setLike] = useState(props.post.like);
     const [likeYet, setLikeYet] = useState(false);
-    const createPost = () => {}
+    const createComment = () => {}
     const [posts, setPosts] = useState('')
     const [showAddComment, setShowAddComment] = useState(false);
 
@@ -65,7 +65,7 @@ const PostItem = (props) => {
                         : ''
                     }
                     {showAddComment
-                        ? <AddCommentBlock create={createPost} posts={posts} setPosts={setPosts}  />
+                        ? <AddCommentBlock create={createComment} posts={posts} setPosts={setPosts}  />
                         : ""
                     }
 
