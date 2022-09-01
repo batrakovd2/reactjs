@@ -23,5 +23,7 @@ Route::post('post/create', [App\Http\Controllers\PostController::class, 'store']
 Route::post('post/add/like', [App\Http\Controllers\PostController::class, 'addPostLike']);
 Route::post('comment/get/child', [App\Http\Controllers\CommentController::class, 'getChildComments']);
 Route::post('comment/add/like', [App\Http\Controllers\CommentController::class, 'addCommentLike']);
+Route::post('comment/create', [App\Http\Controllers\CommentController::class, 'store']);
 
 Route::post('post/upload', [App\Http\Controllers\PostController::class, 'updloadFile']);
+Route::post('comment/upload', [App\Http\Controllers\CommentController::class, 'updloadFile']);

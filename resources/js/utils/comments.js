@@ -40,16 +40,16 @@ export const addCommentLike = async (comment, likeYet, setLike, setLikeYet) => {
     }
 }
 
-export const createComment = async (newComment, posts, comments, setComments, selectedFile, setFilePreview) => {
+export const createComment = async (post, newComment, setComment, selectedFile, setFilePreview) => {
 
     if(selectedFile.length) {
-        return  createPostWithFile(newPost, posts, setPosts, selectedFile, setFilePreview)
+        return  createCommentWithFile(post, newComment, setComment, selectedFile, setFilePreview)
     } else {
-        return storePost(newPost, posts, setPosts)
+        return storeComment(post, newComment, setComment)
     }
 }
 
-const createPostWithFile = async (newComment, posts, comments, setComments, selectedFile, setFilePreview) => {
+const createCommentWithFile = async (post, newComment, setComment, selectedFile, setFilePreview) => {
     const fd = new FormData();
     if(selectedFile && selectedFile.length) {
         selectedFile.map((item, i) => {
@@ -66,19 +66,19 @@ const createPostWithFile = async (newComment, posts, comments, setComments, sele
             const filePath = res.data.map(item => { return  item.replace('public', 'storage') })
             setFilePreview([]);
             return storeComment(
+                post,
                 {...newComment, attachment: filePath},
-                comments,
-                setComments
+                setComment
             );
         }
     });
 }
 
-const storeComment = async (newComment, comments, setComments) => {
-    const response = await PostService.createPost(newComment);
+const storeComment = async (post, newComment, setComment) => {
+    const response = await PostService.createComment(newComment);
     if(response.status === 200) {
         newComment = {...newComment, id: response.data.post.id};
-        setComments([newComment, ...comments]);
+        setComment([newComment, ...post.comments]);
     }
     return response;
 }

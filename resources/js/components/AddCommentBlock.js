@@ -6,19 +6,21 @@ import UploadFile from "./UI/input/UploadFile";
 import PreviewUploadFiles from "./UI/PreviewUploadFiles";
 import Picker from 'emoji-picker-react';
 
-const AddCommentBlock = ({create, posts, setPosts}) => {
+const AddCommentBlock = ({create, post}) => {
 
-    const defaultPost = {
+    const defaultComment = {
         content: '',
-        comments: [],
         like: 0,
+        post_id: post.id,
         user_id: 1,
+        parent_id: 0,
+        child_count: 0,
         attachment: "",
         user_name: "Emanuel",
         user_logo: "/uploads/users/img3.jpg"
     }
 
-    const [post, setPost] = useState(defaultPost);
+    const [comment, setComment] = useState(defaultComment);
     const [selectedFile, setSelectedFile] = useState([]);
     const [filePreview, setFilePreview] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
@@ -31,7 +33,7 @@ const AddCommentBlock = ({create, posts, setPosts}) => {
 
     const onChangeText = (e) => {
         setPosition(e.target.selectionStart)
-        setPost({...post, content: e.target.value})
+        setComment({...comment, content: e.target.value})
     }
 
     const onEmojiBtnClick = (e) => {
@@ -39,16 +41,16 @@ const AddCommentBlock = ({create, posts, setPosts}) => {
     }
 
     const clearEditField = () => {
-        setPost(defaultPost);
+        setComment(defaultComment);
         setSelectedFile([]);
         setFilePreview([]);
     }
 
     useEffect(() => {
         if(chosenEmoji) {
-            let newContent = post.content.substr(0, position) + chosenEmoji.emoji + post.content.substr(position, post.content.length)
+            let newContent = comment.content.substr(0, position) + chosenEmoji.emoji + comment.content.substr(position, comment.content.length)
             setPosition(position + chosenEmoji.emoji.length)
-            setPost({...post, content: newContent})
+            setComment({...comment, content: newContent})
         }
     }, [chosenEmoji])
 
@@ -78,8 +80,8 @@ const AddCommentBlock = ({create, posts, setPosts}) => {
                                     <Picker onEmojiClick={onEmojiClick} disableSearchBar={true} />
                                 </div>
                             </span>
-                            <textarea className="create-post-area" value={post.content} onChange={onChangeText} onClick={e => {setPosition(e.target.selectionStart)}}>
-                                {post.content}
+                            <textarea className="create-post-area" value={comment.content} onChange={onChangeText} onClick={e => {setPosition(e.target.selectionStart)}}>
+                                {comment.content}
                             </textarea>
                         </div>
                         <div className="card-footer">
@@ -88,7 +90,7 @@ const AddCommentBlock = ({create, posts, setPosts}) => {
 
                                 <MyButton onClick={ () => {
                                     // selectedFile ? fileUploadHandler(selectedFile) : ''
-                                    create(post, posts, setPosts, selectedFile, setFilePreview)
+                                    create(post, comment, setComment, selectedFile, setFilePreview)
                                     clearEditField()
                                 }
                                 }>Отправить</MyButton>

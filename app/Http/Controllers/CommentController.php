@@ -21,6 +21,21 @@ class CommentController extends Controller
         if($response) $result = $comment->like;
         return $result;
     }
+
+    public function updloadFile(Request $request) {
+        $files = $request->all();
+        $path = [];
+        $year = date('Y');
+        $month = date('m');
+        $day = date('d');
+        if(!empty($files['image']) && is_array($files['image'])) {
+            foreach ($files['image'] as $fs) {
+                $path[] = $fs->store('public/comment/'.$year.'/'.$month.'/'.$day);
+            }
+        }
+
+        return $path;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,11 +60,26 @@ class CommentController extends Controller
      * Store a newly created resource in public.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return array
      */
     public function store(Request $request)
     {
-        //
+        $result = [];
+//        try{
+        $attachments = $request->input('attachment');
+//        dd($request);
+        $request['attachment'] = !empty($attachments) && is_array($attachments) ? implode(',', $attachments) : '';
+
+        $item = Comment::create($request->all());
+
+        if(!empty($item)) {
+            $result = ['status' => 200, 'descr' => 'Пост добавлен', 'post' => $item];
+        }
+//        } catch (\Exception $e) {
+//            Log::error($e);
+//        }
+
+        return $result;
     }
 
     /**

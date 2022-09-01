@@ -54,5 +54,12 @@ export default class PostService {
         return response;
     }
 
+    static async createComment(comment) {
+        const response = await axios.post('/api/comment/create',{
+            ...comment
+        });
+        return response;
+    }
+
 
 }
