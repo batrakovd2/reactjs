@@ -15,8 +15,9 @@ const CommentList = (props) => {
             {comments.map((comment, index) =>
                 <CommentItem number={index + 1} comment={comment} key={comment.id}  setComment={setComments} />
             )}
-            {props.post.comments.length > 3
-                ?? <div className="comment-show">Показать еще</div>
+            {comments.length >= 3
+                ? <div className="comment-show">Показать еще</div>
+                : ''
             }
             { props.showAddComment
                 ? <AddCommentBlock create={createComment} post={props.post} comments={comments} setComments={setComments} />

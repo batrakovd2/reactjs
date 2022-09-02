@@ -23,7 +23,7 @@ class Post extends Model
         $list = Post::orderBy('id', 'desc')->paginate($limit);
         foreach ($list as $key=>$post) {
 //            $list[$key]->user = $post->user;
-            $list[$key]->comments = $post->comments()->where("parent_id", 0)->orderBy('id')->limit(3)->get();
+            $list[$key]->comments = $post->comments()->where("parent_id", 0)->orderBy('id', 'desc')->limit(3)->get();
 //            $list[$key]->commentCount = $post->comments()->count();
             if(!empty($list[$key]->comments)) {
                 foreach ($list[$key]->comments as $keyCom => $comment) {

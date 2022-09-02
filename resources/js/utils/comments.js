@@ -78,7 +78,7 @@ const storeComment = async (post, newComment, setComment) => {
     const response = await PostService.createComment(newComment);
     if(response.status === 200) {
         newComment = {...newComment, id: response.data.post.id};
-        setComment([...post.comments, newComment]);
+        setComment([newComment, ...post.comments]);
     }
     return response;
 }
