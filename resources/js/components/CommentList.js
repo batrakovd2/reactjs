@@ -15,7 +15,7 @@ const CommentList = (props) => {
     return (
         <div className="card-footer card-comments">
             {comments.map((comment, index) =>
-                <CommentItem number={index + 1} comment={comment} key={comment.id + '_' + index}  setComment={setComments} />
+                <CommentItem number={index + 1} comment={comment} key={comment.id + '_' + index} post={props.post} setComment={setComments} />
             )}
             {props.post.commentsCount >= 3 && comments.length < props.post.commentsCount
                 ? <div className="comment-show" onClick={() => {

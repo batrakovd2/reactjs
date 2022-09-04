@@ -6,20 +6,20 @@ import UploadFile from "./UI/input/UploadFile";
 import PreviewUploadFiles from "./UI/PreviewUploadFiles";
 import Picker from 'emoji-picker-react';
 
-const AddCommentBlock = ({create, post, comments, setComments}) => {
+const AddCommentBlock = ({create, post, comments, setComments, isChild = false}) => {
 
     const defaultComment = {
         content: '',
         like: 0,
         post_id: post.id,
         user_id: 1,
-        parent_id: 0,
+        parent_id: isChild ? comments[0].id : 0,
         child_count: 0,
         attachment: "",
         user_name: "Emanuel",
-        user_logo: "/uploads/users/img3.jpg"
+        user_logo: "/uploads/users/img3.jpg",
+        child: []
     }
-
     const [comment, setComment] = useState(defaultComment);
     const [selectedFile, setSelectedFile] = useState([]);
     const [filePreview, setFilePreview] = useState([]);
@@ -90,7 +90,7 @@ const AddCommentBlock = ({create, post, comments, setComments}) => {
 
                                 <MyButton onClick={ () => {
                                         // selectedFile ? fileUploadHandler(selectedFile) : ''
-                                        create(post, comment, comments, setComments, selectedFile, setFilePreview)
+                                        create(post, comment, comments, setComments, selectedFile, setFilePreview, isChild)
                                         clearEditField()
                                     }
                                 }>Отправить</MyButton>

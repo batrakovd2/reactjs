@@ -34,7 +34,6 @@ export const showParentComments = async (
     setIsLoading(true);
     const response = await PostService.getParentComments(post.id, position);
     const newComment = response.data.data;
-    console.log([...comments, ...newComment])
     setComments([...comments, ...newComment]);
     setIsLoading(false);
 }
@@ -47,12 +46,12 @@ export const addCommentLike = async (comment, likeYet, setLike, setLikeYet) => {
     }
 }
 
-export const createComment = async (post, newComment, comments, setComment, selectedFile, setFilePreview) => {
-
+export const createComment = async (post, newComment, comments, setComment, selectedFile, setFilePreview, isChild = false) => {
+    console.log(post, newComment, comments)
     if(selectedFile.length) {
         return  createCommentWithFile(post, newComment, comments, setComment, selectedFile, setFilePreview)
     } else {
-        return storeComment(post, newComment, comments, setComment)
+        return storeComment(post, newComment, comments, setComment, isChild)
     }
 }
 
@@ -82,12 +81,18 @@ const createCommentWithFile = async (post, newComment, comments,  setComment, se
     });
 }
 
-const storeComment = async (post, newComment, comments, setComment) => {
+const storeComment = async (post, newComment, comments, setComment, isChild) => {
     const response = await PostService.createComment(newComment);
     if(response.status === 200) {
         // console.log(post.comments);
-        newComment = {...newComment, id: response.data.post.id};
-        setComment([newComment, ...comments]);
+        if(!isChild) {
+            newComment = {...newComment, id: response.data.post.id};
+            setComment([newComment, ...comments]);
+        } else {
+            const childComment = {...comments[0], child: newComment};
+            setComment(childComment);
+
+        }
     }
     return response;
 }

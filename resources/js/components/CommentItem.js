@@ -5,6 +5,7 @@ import Loader from "./UI/loader/LoaderMini";
 import LoaderMini from "./UI/loader/LoaderMini";
 import {Context} from "../context";
 import {addCommentLike, changeShowLink} from "../utils/comments";
+import AddCommentBlock from "./AddCommentBlock";
 
 const CommentItem = (props) => {
 
@@ -15,10 +16,12 @@ const CommentItem = (props) => {
     const [likeYet, setLikeYet] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [visibleClass, setvisibleClass] = useState('comment__children');
+    const [showAddChildComment, setShowAddChildComment] = useState(false)
 
     const {showChildComments} = useContext(Context);
     const {changeShowLink} = useContext(Context);
     const {addCommentLike} = useContext(Context);
+    const {createComment} = useContext(Context);
 
     const showComments = () => {
         showChildComments(
@@ -51,7 +54,7 @@ const CommentItem = (props) => {
                         <div>{like}</div>
                     </div>
                     <div className="comment__controls-inner">
-                        <div className="button_link comment__control" data-type="create"></div>
+                        <div className="button_link reply-btn comment__control" data-type="create" onClick={() => setShowAddChildComment(!showAddChildComment)}></div>
                     </div>
                     { comment.child_count
                         ? <div className="comment-show" onClick={() => {showComments()}}>
@@ -61,11 +64,15 @@ const CommentItem = (props) => {
                     }
                     { isLoading ? <LoaderMini /> : '' }
                 </div>
-                { comment.child.length
+                { showAddChildComment
+                    ? <AddCommentBlock create={createComment} post={props.post} comments={[comment]} setComments={setComment} isChild={true} />
+                    : ""
+                }
+                { comment.child && comment.child.length
                 ?
                     <div className={visibleClass}>
                         {comment.child.map((comm, index) =>
-                            <CommentItem number={index + 1} comment={comm} key={comm.id} />
+                            <CommentItem number={index + 1} comment={comm} key={comm.id} post={props.post} />
                         )}
                     </div>
                     : ''
