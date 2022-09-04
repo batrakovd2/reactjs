@@ -5,10 +5,8 @@ import AddCommentBlock from "./AddCommentBlock";
 import {Context} from "../context";
 
 const CommentList = (props) => {
-    console.log(props)
     const [comments, setComments] = useState(props.comments);
     const {createComment} = useContext(Context);
-    // const [showAddComment, setShowAddComment] = useState(false);
 
     return (
         <div className="card-footer card-comments">

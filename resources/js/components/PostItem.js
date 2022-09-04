@@ -53,21 +53,14 @@ const PostItem = (props) => {
                             </div>
 
                             <div className="float-right post-comment-control">
-                                <span className="material-symbols-outlined" onClick={() => {setShowAddComment(!showAddComment)}}>
+                                <span className="material-symbols-outlined" onClick={() => {console.log(showAddComment); setShowAddComment(!showAddComment)}}>
                                 chat
                                 </span>
                             </div>
                         </div>
                     </div>
 
-                    { props.post.comments.length
-                        ? <CommentList post={props.post} comments={props.post.comments} showAddComment={showAddComment} />
-                        : ''
-                    }
-                    {/*{ showAddComment*/}
-                    {/*    ? <AddCommentBlock create={createComment} post={props.post} comments={props.post.comments} />*/}
-                    {/*    : ""*/}
-                    {/*}*/}
+                    <CommentList post={props.post} comments={props.post.comments} showAddComment={showAddComment} />
 
                 </div>
             </div>

@@ -6,7 +6,7 @@ import UploadFile from "./UI/input/UploadFile";
 import PreviewUploadFiles from "./UI/PreviewUploadFiles";
 import Picker from 'emoji-picker-react';
 
-const AddCommentBlock = ({create, post, setComments}) => {
+const AddCommentBlock = ({create, post, comments, setComments}) => {
 
     const defaultComment = {
         content: '',
@@ -54,7 +54,7 @@ const AddCommentBlock = ({create, post, setComments}) => {
         }
     }, [chosenEmoji])
 
-    const rootEl = useRef(null);
+    // const rootEl = useRef(null);
 
     // useEffect(() => {
     //     const onClick = e => rootEl.current.contains(e.target) || console.log('клик вне компонента');
@@ -76,7 +76,7 @@ const AddCommentBlock = ({create, post, setComments}) => {
 
                             <span className="material-symbols-outlined emoji-btn" onClick={() => setShowEmoji(!isShowEmoji)}>
                                 mood
-                                <div ref={rootEl} className={isShowEmoji ? 'emoji-picker-wrapper active' : 'emoji-picker-wrapper'}>
+                                <div className={isShowEmoji ? 'emoji-picker-wrapper active' : 'emoji-picker-wrapper'}>
                                     <Picker onEmojiClick={onEmojiClick} disableSearchBar={true} />
                                 </div>
                             </span>
@@ -89,10 +89,10 @@ const AddCommentBlock = ({create, post, setComments}) => {
                                 <UploadFile selectedFile={selectedFile} setSelectedFile={setSelectedFile} filePreview={filePreview} setFilePreview={setFilePreview}/>
 
                                 <MyButton onClick={ () => {
-                                    // selectedFile ? fileUploadHandler(selectedFile) : ''
-                                    create(post, comment, setComments, selectedFile, setFilePreview)
-                                    clearEditField()
-                                }
+                                        // selectedFile ? fileUploadHandler(selectedFile) : ''
+                                        create(post, comment, comments, setComments, selectedFile, setFilePreview)
+                                        clearEditField()
+                                    }
                                 }>Отправить</MyButton>
                             </div>
                             <PreviewUploadFiles selectedFile={selectedFile} filePreview={filePreview} setSelectedFile={setSelectedFile} setFilePreview={setFilePreview} />
