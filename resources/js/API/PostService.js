@@ -19,6 +19,24 @@ export default class PostService {
         return response;
     }
 
+    static async getParentComments(id, position) {
+        const response = await axios.post('/api/comment/get/parent?page=' + position, {
+            params: {
+                id: id
+            }
+        });
+        return response;
+    }
+
+    static async getParentCommentsCount(id) {
+        const response = await axios.post('/api/comment/get/parent/count', {
+            params: {
+                id: id
+            }
+        });
+        return response;
+    }
+
     static async addLikePost(id) {
         const response = await axios.post('/api/post/add/like', {
             params: {

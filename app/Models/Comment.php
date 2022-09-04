@@ -23,9 +23,23 @@ class Comment extends Model
         $comments = !empty($id)
             ? Comment::where('parent_id', $id)->get()
             : [];
-        foreach ($comments as $key => $comment) {
-            $comments[$key]->user = $comment->user;
-        }
+//        foreach ($comments as $key => $comment) {
+//            $comments[$key]->user = $comment->user;
+//        }
+        return $comments;
+    }
+
+    public static function getParentComments($postId) {
+        $comments = !empty($postId)
+            ? Comment::where('post_id', $postId)->orderBy('id', 'desc')->paginate(3)
+            : [];
+        return $comments;
+    }
+
+    public static function getParentCommentCount($postId) {
+        $comments = !empty($postId)
+            ? Comment::where('post_id', $postId)->count()
+            : [];
         return $comments;
     }
 

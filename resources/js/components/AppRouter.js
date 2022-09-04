@@ -5,13 +5,13 @@ import About from "../pages/About";
 import Navbar from "./UI/navbar/Navbar";
 import Error from "../pages/Error";
 import {Context} from "../context";
-import {addCommentLike, changeShowLink, createComment, showChildComments} from "../utils/comments";
+import {addCommentLike, changeShowLink, createComment, showChildComments, showParentComments} from "../utils/comments";
 import {addPostLike, createPost} from "../utils/post";
 
 const AppRouter = () => {
 
     return(
-        <Context.Provider value={{showChildComments, addCommentLike, changeShowLink, addPostLike, createPost, createComment}}>
+        <Context.Provider value={{showChildComments, addCommentLike, changeShowLink, addPostLike, createPost, createComment, showParentComments}}>
             <BrowserRouter >
                 <Navbar/>
                 <Switch>

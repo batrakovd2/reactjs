@@ -12,6 +12,16 @@ class CommentController extends Controller
         return Comment::getChildComments($id['id']);
     }
 
+    public function getParentComments(Request $request) {
+        $params = $request->input('params') ?? [];
+        return Comment::getParentComments($params['id']);
+    }
+
+    public function getParentCommentCount(Request $request) {
+        $params = $request->input('params') ?? [];
+        return Comment::getParentCommentCount($params['id']);
+    }
+
     public function addCommentLike(Request $request) {
         $id = $request->input('params');
         $comment = Comment::find($id['id']);

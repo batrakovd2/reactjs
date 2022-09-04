@@ -11,14 +11,6 @@ export const showChildComments = async (
         ...comment, child: response.data
     }
     setComment(newComment)
-
-    // if (!commentShow.visible) {
-    //     setCommentShow({visible: true, title: 'Скрыть комментарии'})
-    //     setvisibleClass(visibleClass + ' show')
-    // } else {
-    //     setCommentShow({visible: false, title: 'Показать еще ' + comment.child_count})
-    //     setvisibleClass('comment__children')
-    // }
     setIsLoading(false);
 }
 
@@ -30,6 +22,21 @@ export const changeShowLink = (comment, commentShow, setCommentShow, visibleClas
         setCommentShow({visible: false, title: 'Показать еще ' + comment.child_count})
         setvisibleClass('comment__children')
     }
+}
+
+export const showParentComments = async (
+    post,
+    comments,
+    setComments,
+    position,
+    setIsLoading
+) => {
+    setIsLoading(true);
+    const response = await PostService.getParentComments(post.id, position);
+    const newComment = response.data.data;
+    console.log([...comments, ...newComment])
+    setComments([...comments, ...newComment]);
+    setIsLoading(false);
 }
 
 export const addCommentLike = async (comment, likeYet, setLike, setLikeYet) => {

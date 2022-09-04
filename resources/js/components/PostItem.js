@@ -27,9 +27,7 @@ const PostItem = (props) => {
                         <p>
                             {props.post.content}
                         </p>
-
                         {
-
                             props.post.attachment.length && props.post.attachment[0]
                                 ? props.post.attachment.map((item) => <img className="img-fluid" src={item} key={item} alt="Photo" />)
                                 : ""
