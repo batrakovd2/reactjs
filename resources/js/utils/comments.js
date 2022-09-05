@@ -47,7 +47,7 @@ export const addCommentLike = async (comment, likeYet, setLike, setLikeYet) => {
 }
 
 export const createComment = async (post, newComment, comments, setComment, selectedFile, setFilePreview, isChild = false) => {
-    console.log(post, newComment, comments)
+    // console.log(post, newComment, comments)
     if(selectedFile.length) {
         return  createCommentWithFile(post, newComment, comments, setComment, selectedFile, setFilePreview)
     } else {
@@ -86,12 +86,14 @@ const storeComment = async (post, newComment, comments, setComment, isChild) => 
     if(response.status === 200) {
         // console.log(post.comments);
         if(!isChild) {
-            newComment = {...newComment, id: response.data.post.id};
+            newComment = {...newComment, id: response.data.comment.id};
             setComment([newComment, ...comments]);
+            console.log(comments);
         } else {
-            const childComment = {...comments[0], child: newComment};
+            console.log({...comments[0], child: newComment});
+            const childComment = {...comments[0], id: response.data.comment.id, child: newComment};
             setComment(childComment);
-
+            console.log(comments);
         }
     }
     return response;

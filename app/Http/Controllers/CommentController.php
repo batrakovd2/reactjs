@@ -75,19 +75,20 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $result = [];
-//        try{
         $attachments = $request->input('attachment');
-//        dd($request);
+        $parentId = $request->input('parent_id');
         $request['attachment'] = !empty($attachments) && is_array($attachments) ? implode(',', $attachments) : '';
+
+        if(!empty($parentId)) {
+            $parentComment = Comment::find($parentId);
+            $parentComment->update(['child_count' => $parentComment->child_count + 1]);
+        }
 
         $item = Comment::create($request->all());
 
         if(!empty($item)) {
-            $result = ['status' => 200, 'descr' => 'Пост добавлен', 'post' => $item];
+            $result = ['status' => 200, 'descr' => 'Комментарий добавлен', 'comment' => $item];
         }
-//        } catch (\Exception $e) {
-//            Log::error($e);
-//        }
 
         return $result;
     }
