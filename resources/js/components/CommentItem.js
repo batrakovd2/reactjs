@@ -37,7 +37,7 @@ const CommentItem = (props) => {
             setvisibleClass
         );
     }
-
+    console.log(comment)
     return (
         <div className="card-comment">
             <div className="comment-body">

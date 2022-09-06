@@ -81,7 +81,8 @@ class CommentController extends Controller
 
         if(!empty($parentId)) {
             $parentComment = Comment::find($parentId);
-            $parentComment->update(['child_count' => $parentComment->child_count + 1]);
+            $parentComment->child_count = $parentComment->child_count + 1;
+            $parentComment->save();
         }
 
         $item = Comment::create($request->all());
