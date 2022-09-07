@@ -6,7 +6,7 @@ import UploadFile from "./UI/input/UploadFile";
 import PreviewUploadFiles from "./UI/PreviewUploadFiles";
 import Picker from 'emoji-picker-react';
 
-const AddCommentBlock = ({create, post, comments, setComments, isChild = false}) => {
+const AddCommentBlock = ({create, post, comments, setComments, isChild = false, setShowAddChildComment}) => {
 
     const defaultComment = {
         content: '',
@@ -54,21 +54,13 @@ const AddCommentBlock = ({create, post, comments, setComments, isChild = false})
         }
     }, [chosenEmoji])
 
-    // const rootEl = useRef(null);
-
-    // useEffect(() => {
-    //     const onClick = e => rootEl.current.contains(e.target) || console.log('клик вне компонента');
-    //     document.addEventListener('click', onClick);
-    //     return () => document.removeEventListener('click', onClick);
-    // }, []);
-
     return (
         <div>
             <div className="row">
                 <div className="col-md-12">
                     <div className="card card-add-comment">
                         <div className="card-header">
-                            <img className="img-circle" src="https://picsum.photos/50" alt=""/>
+                            <img className="img-circle" src="/uploads/users/img3.jpg" alt=""/>
                             <span className="user-name">{post.user_name}</span>
                         </div>
 
@@ -91,6 +83,7 @@ const AddCommentBlock = ({create, post, comments, setComments, isChild = false})
                                 <MyButton onClick={ () => {
                                         // selectedFile ? fileUploadHandler(selectedFile) : ''
                                         create(post, comment, comments, setComments, selectedFile, setFilePreview, isChild)
+                                        setShowAddChildComment(false)
                                         clearEditField()
                                     }
                                 }>Отправить</MyButton>

@@ -37,7 +37,7 @@ const CommentItem = (props) => {
             setvisibleClass
         );
     }
-    console.log(comment)
+
     return (
         <div className="card-comment">
             <div className="comment-body">
@@ -64,10 +64,6 @@ const CommentItem = (props) => {
                     }
                     { isLoading ? <LoaderMini /> : '' }
                 </div>
-                { showAddChildComment
-                    ? <AddCommentBlock create={createComment} post={props.post} comments={[comment]} setComments={setComment} isChild={true} />
-                    : ""
-                }
                 { comment.child && comment.child.length
                 ?
                     <div className={visibleClass}>
@@ -76,6 +72,10 @@ const CommentItem = (props) => {
                         )}
                     </div>
                     : ''
+                }
+                { showAddChildComment
+                    ? <AddCommentBlock create={createComment} post={props.post} comments={[comment]} setComments={setComment} isChild={true} setShowAddChildComment={setShowAddChildComment} />
+                    : ""
                 }
             </div>
 

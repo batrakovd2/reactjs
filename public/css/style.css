@@ -27,12 +27,23 @@
 .navbar .logo img{
     border-radius: 50%;
     margin: 5px 15px;
+    width: 50px;
+    height: 50px;
 }
 
 .card-header{
     padding: 1rem 1rem 0;
     background: none;
     border-bottom: none;
+}
+
+.card-header img {
+    width: 50px;
+    height: 50px;
+}
+
+.card-add-comment .card-header img{
+    height: 35px;
 }
 
 .card-footer{

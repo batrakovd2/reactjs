@@ -66,7 +66,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                 <div className="col-md-12">
                     <div className="card card-add-post">
                         <div className="card-header">
-                            <img className="img-circle" src="https://picsum.photos/50" alt=""/>
+                            <img className="img-circle" src="/uploads/users/img3.jpg" alt=""/>
                             <span className="user-name">{post.user_name}</span>
                         </div>
 
