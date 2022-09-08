@@ -84,17 +84,17 @@ const createCommentWithFile = async (post, newComment, comments,  setComment, se
 const storeComment = async (post, newComment, comments, setComment, isChild) => {
     const response = await PostService.createComment(newComment);
     if(response.status === 200) {
-        // console.log(post.comments);
+        // console.log(response);
         if(!isChild) {
             newComment = {...newComment, id: response.data.comment.id};
             setComment([newComment, ...comments]);
             console.log(comments);
         } else {
             // console.log({...comments[0], child: newComment});
-            console.log(comments, comments[0].child_count);
+            // console.log(comments, comments[0].child_count);
             const childComment = {...comments[0], child: newComment, child_count: comments[0].child_count + 1};
             setComment(childComment);
-            console.log(comments);
+            // console.log(comments);
         }
     }
     return response;

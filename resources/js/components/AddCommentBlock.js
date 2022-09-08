@@ -6,7 +6,7 @@ import UploadFile from "./UI/input/UploadFile";
 import PreviewUploadFiles from "./UI/PreviewUploadFiles";
 import Picker from 'emoji-picker-react';
 
-const AddCommentBlock = ({create, post, comments, setComments, isChild = false, setShowAddComment}) => {
+const AddCommentBlock = ({create, post, comments, setComments, isChild = false, setShowAddComment, setvisibleClass}) => {
 
     const defaultComment = {
         content: '',
