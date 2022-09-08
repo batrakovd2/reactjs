@@ -91,6 +91,7 @@ const storeComment = async (post, newComment, comments, setComment, isChild) => 
             console.log(comments);
         } else {
             // console.log({...comments[0], child: newComment});
+            console.log(comments, comments[0].child_count);
             const childComment = {...comments[0], child: newComment, child_count: comments[0].child_count + 1};
             setComment(childComment);
             console.log(comments);

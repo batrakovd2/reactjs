@@ -58,7 +58,7 @@ const PostItem = (props) => {
                         </div>
                     </div>
 
-                    <CommentList post={props.post} comments={props.post.comments} showAddComment={showAddComment} />
+                    <CommentList post={props.post} comments={props.post.comments} showAddComment={showAddComment} setShowAddComment={setShowAddComment} />
 
                 </div>
             </div>

@@ -74,7 +74,7 @@ const CommentItem = (props) => {
                     : ''
                 }
                 { showAddChildComment
-                    ? <AddCommentBlock create={createComment} post={props.post} comments={[comment]} setComments={setComment} isChild={true} setShowAddChildComment={setShowAddChildComment} />
+                    ? <AddCommentBlock create={createComment} post={props.post} comments={[comment]} setComments={setComment} isChild={true} setShowAddComment={setShowAddChildComment} />
                     : ""
                 }
             </div>

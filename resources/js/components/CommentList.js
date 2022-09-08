@@ -27,7 +27,7 @@ const CommentList = (props) => {
             }
             { isLoading ? <LoaderMini /> : '' }
             { props.showAddComment
-                ? <AddCommentBlock create={createComment} post={props.post} comments={comments} setComments={setComments} />
+                ? <AddCommentBlock create={createComment} post={props.post} comments={comments} setComments={setComments} setShowAddComment={props.setShowAddComment} />
                 : ""
             }
         </div>

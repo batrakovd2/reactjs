@@ -6,7 +6,7 @@ import UploadFile from "./UI/input/UploadFile";
 import PreviewUploadFiles from "./UI/PreviewUploadFiles";
 import Picker from 'emoji-picker-react';
 
-const AddCommentBlock = ({create, post, comments, setComments, isChild = false, setShowAddChildComment}) => {
+const AddCommentBlock = ({create, post, comments, setComments, isChild = false, setShowAddComment}) => {
 
     const defaultComment = {
         content: '',
@@ -83,7 +83,7 @@ const AddCommentBlock = ({create, post, comments, setComments, isChild = false, 
                                 <MyButton onClick={ () => {
                                         // selectedFile ? fileUploadHandler(selectedFile) : ''
                                         create(post, comment, comments, setComments, selectedFile, setFilePreview, isChild)
-                                        setShowAddChildComment(false)
+                                        setShowAddComment(false)
                                         clearEditField()
                                     }
                                 }>Отправить</MyButton>
