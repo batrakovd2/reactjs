@@ -6,9 +6,18 @@ import UserBlock from "./UserBlock";
 import {Context} from "../context";
 import AddPostBlock from "./AddPostBlock";
 import AddCommentBlock from "./AddCommentBlock";
+import {useDispatch, useSelector} from "react-redux";
+import {addPostLikeAction} from "../store/postLikeReducer";
 
 const PostItem = (props) => {
-    const [like, setLike] = useState(props.post.like);
+    const dispatch = useDispatch();
+    const like = useSelector(state => state.like)
+
+    const addLike = (like) => {
+        dispatch(addPostLikeAction(like))
+    }
+
+    // const [like, setLike] = useState(props.post.like);
     const [likeYet, setLikeYet] = useState(false);
     // const {createComment} = useContext(Context);
     const [posts, setPosts] = useState('')
@@ -38,7 +47,8 @@ const PostItem = (props) => {
                         <div className="post-control">
                             <div className="post-control-left-wrapper">
                                 <div className="post-like-control post-control-item">
-                                    <span className={!like ? 'not-like material-symbols-outlined like-icon' : 'material-symbols-outlined like-icon'} onClick={() => addPostLike(props.post.id, likeYet, setLikeYet, setLike)}>
+                                    <span className={!like ? 'not-like material-symbols-outlined like-icon' : 'material-symbols-outlined like-icon'}
+                                          onClick={() => addPostLike(props.post.id, likeYet, setLikeYet, setLike)}>
                                         favorite
                                     </span>
                                     <div>{like}</div>

@@ -9,22 +9,7 @@ import {addCommentLike, changeShowLink, createComment, showChildComments, showPa
 import {addPostLike, createPost} from "../utils/post";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-
-const defaultState = {
-    cache: 0
-}
-
-const reducer = (state = defaultState, action) => {
-    switch(action.type) {
-        case "ADD":
-            return {...state, cache: state.cache + action}
-
-        default:
-            return state
-    }
-}
-
-const store = createStore(reducer)
+import {store} from "../store";
 
 const AppRouter = () => {
 

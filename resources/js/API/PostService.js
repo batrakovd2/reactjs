@@ -43,7 +43,9 @@ export default class PostService {
                 id: id
             }
         });
-        return response;
+        return (dispatch) => {
+            dispatch(response)
+        };
     }
 
     static async addLikeComment(id) {
