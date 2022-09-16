@@ -14,13 +14,24 @@ const SET_POSTS_LIST = 'SET_POSTS_LIST'
 const CHANGE_CONTENT = 'CHANGE_CONTENT'
 
 export const postReducer = (state = defaultState, action) => {
+
     switch(action.type) {
         case ADD_POST_LIKE:
-            return {...state, like: state.like + 1}
+            const newStateLike = state.map((post) => {
+                if(post.id == action.payload.id) {
+                    post.like = post.like + 1
+                }
+            })
+            return newStateLike
         case SET_POSTS_LIST:
-            return {...state, ...action.payload}
+            return [...state, ...action.payload]
         case CHANGE_CONTENT:
-            return {...state, ...state.filter(post => post.id == action.payload)}
+            const newState = state.map((post) => {
+                if(post.id == action.payload.id) {
+                    post.content = action.payload.content
+                }
+            })
+            return newState
         default:
             return state
     }
@@ -28,4 +39,8 @@ export const postReducer = (state = defaultState, action) => {
 
 export const addPostLikeAction = (payload) => ({
     type: ADD_POST_LIKE, payload
+})
+
+export const setPostsList = (payload) => ({
+    type: SET_POSTS_LIST, payload
 })

@@ -8,18 +8,29 @@ import PostList from "../components/PostList";
 import Loader from "../components/UI/loader/Loader";
 import {useObserver} from "../hooks/useObserver";
 import {Context} from "../context";
+import {useDispatch, useSelector} from "react-redux";
+import {setPostsList} from "../store/postReducer";
 
 const Posts = () => {
-    const [posts, setPosts] = useState([]);
+    const [postsOld, setPosts] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [limit, setLimit] = useState(5);
     const [page, setPage] = useState(1);
     const lastElement = useRef();
     const {createPost} = useContext(Context);
 
+    const dispatch = useDispatch()
+    const posts = useSelector(state => state.postReducer)
+
+    const setPostList = (posts) => {
+        dispatch(setPostsList(posts))
+    }
+
     const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
         const response = await PostService.getPosts(limit, page);
-        setPosts([...posts, ...response.data.data]);
+        console.log(response)
+        setPostList(response.data.data)
+        // setPosts([...posts, ...response.data.data]);
         const totalCount = response.data.total;
         setTotalPages(getPagesCount(totalCount, limit));
     });
