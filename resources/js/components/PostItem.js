@@ -20,7 +20,7 @@ const PostItem = (props) => {
     // const [like, setLike] = useState(props.post.like);
     const [likeYet, setLikeYet] = useState(false);
     // const {createComment} = useContext(Context);
-    const [posts, setPosts] = useState('')
+    // const [posts, setPosts] = useState('')
     const [showAddComment, setShowAddComment] = useState(false);
 
 

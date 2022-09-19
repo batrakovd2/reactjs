@@ -28,7 +28,6 @@ const Posts = () => {
 
     const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
         const response = await PostService.getPosts(limit, page);
-        console.log(response)
         setPostList(response.data.data)
         // setPosts([...posts, ...response.data.data]);
         const totalCount = response.data.total;
@@ -47,7 +46,7 @@ const Posts = () => {
         <div className="feed-container">
             <AddPostBlock create={createPost} posts={posts} setPosts={setPosts}  />
             {postError && <h1> Произошла ошибка ${postError}</h1> }
-            <PostList posts={posts}/>
+            <PostList />
             { isPostLoading ? <Loader /> : '' }
             <div ref={lastElement} style={{height: 20, background: 'fff'}}></div>
 

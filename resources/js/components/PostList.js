@@ -1,7 +1,10 @@
 import React from 'react';
 import PostItem from "./PostItem";
+import {useSelector} from "react-redux";
 
-const PostList = ({posts}) => {
+const PostList = () => {
+
+    const posts = useSelector(state => state.postReducer)
 
     return (
         <div>
