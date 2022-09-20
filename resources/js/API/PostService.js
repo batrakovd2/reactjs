@@ -1,4 +1,5 @@
 import axios from "axios";
+import {createPost} from "../store/postReducer";
 
 export default class PostService {
     static async getPosts(limit = 3, page = 1) {
@@ -74,6 +75,8 @@ export default class PostService {
         return response;
     }
 
+
+
     static async createComment(comment) {
         const response = await axios.post('/api/comment/create',{
             ...comment
@@ -82,4 +85,10 @@ export default class PostService {
     }
 
 
+}
+
+export const createPostNew = (post, dispatch) => {
+    return axios.post('/api/post/create',{
+        ...post
+    }).then(res => dispatch(createPost(res.post)));
 }

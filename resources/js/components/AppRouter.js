@@ -15,7 +15,7 @@ const AppRouter = () => {
 
     return(
         <Provider store={store}>
-            <Context.Provider value={{showChildComments, addCommentLike, changeShowLink, addPostLike, createPost, createComment, showParentComments}}>
+            <Context.Provider value={{showChildComments, addCommentLike, changeShowLink, createPost, createComment, showParentComments}}>
                 <BrowserRouter >
                     <Navbar/>
                     <Switch>

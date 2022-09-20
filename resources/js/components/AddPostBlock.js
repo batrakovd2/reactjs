@@ -5,9 +5,12 @@ import {Context} from "../context";
 import UploadFile from "./UI/input/UploadFile";
 import PreviewUploadFiles from "./UI/PreviewUploadFiles";
 import Picker from 'emoji-picker-react';
+import {useDispatch} from "react-redux";
+import {createPostNew} from "../API/PostService";
 
 const AddPostBlock = ({create, posts, setPosts}) => {
 
+    const dispatch = useDispatch();
     const defaultPost = {
         content: '',
         comments: [],
@@ -17,8 +20,12 @@ const AddPostBlock = ({create, posts, setPosts}) => {
         user_name: "Emanuel",
         user_logo: "/uploads/users/img3.jpg"
     }
+    // const {createPost} = useContext(Context);
+    const createPost = (newPost, selectedFile, setFilePreview) => {
+        createPostNew(newPost, dispatch)
+    }
 
-    const [post, setPost] = useState(defaultPost);
+    const [newPost, setNewPost] = useState(defaultPost);
     const [selectedFile, setSelectedFile] = useState([]);
     const [filePreview, setFilePreview] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
@@ -31,7 +38,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
 
     const onChangeText = (e) => {
         setPosition(e.target.selectionStart)
-        setPost({...post, content: e.target.value})
+        setNewPost({...newPost, content: e.target.value})
     }
 
     const onEmojiBtnClick = (e) => {
@@ -39,16 +46,16 @@ const AddPostBlock = ({create, posts, setPosts}) => {
     }
 
     const clearEditField = () => {
-        setPost(defaultPost);
+        setNewPost(defaultPost);
         setSelectedFile([]);
         setFilePreview([]);
     }
 
     useEffect(() => {
         if(chosenEmoji) {
-            let newContent = post.content.substr(0, position) + chosenEmoji.emoji + post.content.substr(position, post.content.length)
+            let newContent = newPost.content.substr(0, position) + chosenEmoji.emoji + newPost.content.substr(position, newPost.content.length)
             setPosition(position + chosenEmoji.emoji.length)
-            setPost({...post, content: newContent})
+            setNewPost({...newPost, content: newContent})
         }
     }, [chosenEmoji])
 
@@ -67,19 +74,17 @@ const AddPostBlock = ({create, posts, setPosts}) => {
                     <div className="card card-add-post">
                         <div className="card-header">
                             <img className="img-circle" src="/uploads/users/img3.jpg" alt=""/>
-                            <span className="user-name">{post.user_name}</span>
+                            <span className="user-name">{newPost.user_name}</span>
                         </div>
-
                         <div className="card-body">
-
                             <span className="material-symbols-outlined emoji-btn" onClick={() => setShowEmoji(!isShowEmoji)}>
                                 mood
                                 <div ref={rootEl} className={isShowEmoji ? 'emoji-picker-wrapper active' : 'emoji-picker-wrapper'}>
                                     <Picker onEmojiClick={onEmojiClick} disableSearchBar={true} />
                                 </div>
                             </span>
-                            <textarea className="create-post-area" value={post.content} onChange={onChangeText} onClick={e => {setPosition(e.target.selectionStart)}}>
-                                {post.content}
+                            <textarea className="create-post-area" value={newPost.content} onChange={onChangeText} onClick={e => {setPosition(e.target.selectionStart)}}>
+                                {newPost.content}
                             </textarea>
                         </div>
                         <div className="card-footer">
@@ -88,13 +93,12 @@ const AddPostBlock = ({create, posts, setPosts}) => {
 
                                 <MyButton onClick={ () => {
                                     // selectedFile ? fileUploadHandler(selectedFile) : ''
-                                    create(post, posts, setPosts, selectedFile, setFilePreview)
+                                    createPost(newPost, selectedFile, setFilePreview)
                                     clearEditField()
                                     }
                                 }>Отправить</MyButton>
                             </div>
                             <PreviewUploadFiles selectedFile={selectedFile} filePreview={filePreview} setSelectedFile={setSelectedFile} setFilePreview={setFilePreview} />
-
                         </div>
                     </div>
                 </div>

@@ -12,9 +12,9 @@ import {addPostLikeAction, setPostsList} from "../store/postReducer";
 const PostItem = (props) => {
 
     const post = props.post;
-
     const dispatch = useDispatch()
     const [likeYet, setLikeYet] = useState(false);
+    const [showAddComment, setShowAddComment] = useState(false);
     const addLikePost = async (post) => {
         if(!likeYet) {
             const response = await PostService.addLikePost(post.id);
@@ -24,8 +24,6 @@ const PostItem = (props) => {
             setLikeYet(true)
         }
     }
-
-    const [showAddComment, setShowAddComment] = useState(false);
 
     return (
         <div className="row">
@@ -38,12 +36,13 @@ const PostItem = (props) => {
                         <p>
                             {props.post.content}
                         </p>
+
                         {
+
                             props.post.attachment.length && props.post.attachment[0]
                                 ? props.post.attachment.map((item) => <img className="img-fluid" src={item} key={item} alt="Photo" />)
                                 : ""
                         }
-
                     </div>
                     <div className="card-footer">
                         <div className="post-control">
@@ -61,7 +60,6 @@ const PostItem = (props) => {
                                     </span>
                                 </div>
                             </div>
-
                             <div className="float-right post-comment-control">
                                 <span className="material-symbols-outlined" onClick={() => {console.log(showAddComment); setShowAddComment(!showAddComment)}}>
                                 chat
@@ -69,12 +67,9 @@ const PostItem = (props) => {
                             </div>
                         </div>
                     </div>
-
                     <CommentList post={props.post} comments={props.post.comments} showAddComment={showAddComment} setShowAddComment={setShowAddComment} />
-
                 </div>
             </div>
-
         </div>
     );
 };
