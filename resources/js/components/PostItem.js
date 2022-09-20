@@ -7,24 +7,26 @@ import {Context} from "../context";
 import AddPostBlock from "./AddPostBlock";
 import AddCommentBlock from "./AddCommentBlock";
 import {useDispatch, useSelector} from "react-redux";
-import {addPostLikeAction} from "../store/postLikeReducer";
+import {addPostLikeAction, setPostsList} from "../store/postReducer";
 
 const PostItem = (props) => {
-    const dispatch = useDispatch();
-    const like = useSelector(state => state.like)
 
-    const addLike = (like) => {
-        dispatch(addPostLikeAction(like))
+    const post = props.post;
+
+    const dispatch = useDispatch()
+    const [likeYet, setLikeYet] = useState(false);
+    const addLikePost = async (post) => {
+        if(!likeYet) {
+            const response = await PostService.addLikePost(post.id);
+            if (response.length) {
+                dispatch(addPostLikeAction(post))
+            }
+            setLikeYet(true)
+        }
     }
 
-    // const [like, setLike] = useState(props.post.like);
-    const [likeYet, setLikeYet] = useState(false);
-    // const {createComment} = useContext(Context);
-    // const [posts, setPosts] = useState('')
     const [showAddComment, setShowAddComment] = useState(false);
 
-
-    const {addPostLike} = useContext(Context);
     return (
         <div className="row">
             <div className="col-12">
@@ -47,11 +49,11 @@ const PostItem = (props) => {
                         <div className="post-control">
                             <div className="post-control-left-wrapper">
                                 <div className="post-like-control post-control-item">
-                                    <span className={!like ? 'not-like material-symbols-outlined like-icon' : 'material-symbols-outlined like-icon'}
-                                          onClick={() => addPostLike(props.post.id, likeYet, setLikeYet, setLike)}>
+                                    <span className={!props.post.like ? 'not-like material-symbols-outlined like-icon' : 'material-symbols-outlined like-icon'}
+                                          onClick={() => addLikePost(post)}>
                                         favorite
                                     </span>
-                                    <div>{like}</div>
+                                    <div>{props.post.like}</div>
                                 </div>
                                 <div className="post-share-control post-control-item">
                                     <span className="material-symbols-outlined">

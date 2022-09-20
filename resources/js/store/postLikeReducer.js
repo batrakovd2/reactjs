@@ -12,7 +12,3 @@ export const postLikeReducer = (state = defaultState, action) => {
             return state
     }
 }
-
-export const addPostLikeAction = (payload) => ({
-    type: ADD_POST_LIKE, payload
-})
