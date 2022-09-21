@@ -22,6 +22,7 @@ const AddPostBlock = ({create, posts, setPosts}) => {
     }
     // const {createPost} = useContext(Context);
     const createPost = (newPost, selectedFile, setFilePreview) => {
+        console.log(newPost)
         createPostNew(newPost, dispatch)
     }
 

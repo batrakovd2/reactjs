@@ -79,6 +79,9 @@ class PostController extends Controller
             $item = Post::create($request->all());
 
             if(!empty($item)) {
+                $item['attachment'] = [""];
+                $item['comments'] = [];
+                $item['commentsCount'] = 0;
                 $result = ['status' => 200, 'descr' => 'Пост добавлен', 'post' => $item];
             }
 //        } catch (\Exception $e) {

@@ -87,8 +87,13 @@ export default class PostService {
 
 }
 
-export const createPostNew = (post, dispatch) => {
-    return axios.post('/api/post/create',{
+export const createPostNew = async (post, dispatch) => {
+    return await axios.post('/api/post/create',{
         ...post
-    }).then(res => dispatch(createPost(res.post)));
+    }).then(res =>
+    {
+        console.log(res)
+        dispatch(createPost(res.data.post))
+    }
+    );
 }
